@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class RobotPart : MonoBehaviour
 {
-    public bool has_owner { get; set; }
     [SerializeField] private RobotParts part = RobotParts.PART_HEAD;
 
     private bool was_seen = false;
+
+    Vector3 target_scale = Vector3.zero;
+
+    Vector3 mouse_offset = Vector3.zero;
 
     /*
      * Called just after object creation
@@ -15,7 +19,8 @@ public class RobotPart : MonoBehaviour
     private void Start()
     {
         GenerateBodyPart();
-        has_owner = false;
+        target_scale = transform.localScale;
+        //transform.localScale = new Vector3(0.1f, 0.1f, 0.1f); //Code to make object appear nice when spawning by scaling up the obj
     }
 
     /*
@@ -33,11 +38,13 @@ public class RobotPart : MonoBehaviour
     {
         Renderer render = GetComponent<Renderer>();
 
-        if(render.isVisible && !was_seen)
+        //ScaleTransform(); //Was gonna implement code that makes it nicer to look at when objects spawn
+
+        if (render.isVisible && !was_seen)
         {
             was_seen = true;
         }
-        else if(!render.isVisible && was_seen)
+        else if (!render.isVisible && was_seen)
         {
             Destroy(gameObject);
         }
@@ -58,20 +65,71 @@ public class RobotPart : MonoBehaviour
     /*
      * Moves object along conveyor belt
      */
-    public void ConveyorMovement(float speed)
+    public void ConveyorMovement(float speed, Vector3 dir)
     {
         Vector3 position = transform.position;
-        position.x += speed * Time.deltaTime;
+        float new_speed = speed * Time.deltaTime;
+
+        position.x += new_speed * dir.x;
+        position.y += new_speed * dir.y;
+
         transform.position = position;
     }
 
+    private void OnMouseDown()
+    {
+        mouse_offset = transform.position - GetMouseWorldPos();
+    }
+
+    /*
+     * Called when the mouse hovers over an object
+     */
     private void OnMouseOver()
     {
         GetComponent<SpriteRenderer>().color = Color.red;
+
+        if (Input.GetMouseButton(0))
+        {
+            transform.parent = null; //Removes the spawner as a parent
+        }
     }
 
+    /*
+     * Called when the mouse is dragged
+     */
+    private void OnMouseDrag()
+    {
+        transform.position = GetMouseWorldPos() - mouse_offset;
+    }
+
+    /*
+     * Called when the mouse is no longer hovering over an object
+     */
     private void OnMouseExit()
     {
         GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
+    private void ScaleTransform()
+    {
+        if (transform.localScale == target_scale)
+            return;
+
+        Vector3 local_scale = transform.localScale;
+        local_scale.x *= (8 * Time.deltaTime);
+        local_scale.y *= (8 * Time.deltaTime);
+        transform.localScale = local_scale;
+    }
+
+    /*
+     * Converts the mouse pos from screen coordinates to world coordinates
+     */
+    Vector3 GetMouseWorldPos()
+    {
+        Vector3 mouse_pos = Input.mousePosition;
+
+        mouse_pos.z = Camera.main.WorldToScreenPoint(transform.position).z;
+
+        return Camera.main.ScreenToWorldPoint(mouse_pos);
     }
 }

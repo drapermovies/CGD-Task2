@@ -12,6 +12,8 @@ public class Spawner : MonoBehaviour
 
     private List<Transform> objects = new List<Transform>();
 
+    private Vector3 conveyor_dir = new Vector3(1.0f, 0.0f, 0.0f);
+
     /*
      * Called every frame
      */
@@ -21,9 +23,9 @@ public class Spawner : MonoBehaviour
 
         foreach (Transform form in objects)
         {
-            if (!form.GetComponent<RobotPart>().has_owner)
+            if (form.parent != null)
             {
-                form.GetComponent<RobotPart>().ConveyorMovement(conveyor_speed);
+                form.GetComponent<RobotPart>().ConveyorMovement(conveyor_speed, conveyor_dir);
             }
         }
 
@@ -48,6 +50,7 @@ public class Spawner : MonoBehaviour
         Transform obj = Instantiate(body_part).transform;
         objects.Add(obj);
         obj.position = this.transform.position;
+        obj.SetParent(this.transform);
 
         if(obj != null)
         {

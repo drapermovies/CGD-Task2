@@ -11,8 +11,6 @@ public class StressTimerScript : MonoBehaviour
     public float restRecoverySpeed;
     public float burnoutRecoverySpeed;
 
-    float stressLevel;
-
     //UI elements
     Image stressBar;
 
@@ -27,10 +25,10 @@ public class StressTimerScript : MonoBehaviour
     {
         if (!StressManager.GetResting() && !StressManager.GetBurnout())
         {
-            if (stressLevel < maxStress)
+            if (StressManager.GetStressLevel() < maxStress)
             {
-                stressLevel += Time.deltaTime;
-                stressBar.fillAmount = stressLevel / maxStress;
+                StressManager.IncreaseStressLevel(Time.deltaTime);
+                stressBar.fillAmount = StressManager.GetStressLevel() / maxStress;
             }
             else
             {
@@ -43,10 +41,10 @@ public class StressTimerScript : MonoBehaviour
         {
             if(StressManager.GetResting())
             {
-                if(stressLevel > 0)
+                if(StressManager.GetStressLevel() > 0)
                 {
-                    stressLevel -= Time.deltaTime * restRecoverySpeed;
-                    stressBar.fillAmount = stressLevel / maxStress;
+                    StressManager.DecreaseStressLevel(Time.deltaTime * restRecoverySpeed);
+                    stressBar.fillAmount = StressManager.GetStressLevel() / maxStress;
                 }
                 else
                 {
@@ -55,10 +53,10 @@ public class StressTimerScript : MonoBehaviour
             }
             else if (StressManager.GetBurnout())
             {
-                if(stressLevel > 0)
+                if(StressManager.GetStressLevel() > 0)
                 {
-                    stressLevel -= Time.deltaTime * burnoutRecoverySpeed;
-                    stressBar.fillAmount = stressLevel / maxStress;
+                    StressManager.DecreaseStressLevel(Time.deltaTime * burnoutRecoverySpeed);
+                    stressBar.fillAmount = StressManager.GetStressLevel() / maxStress;
                 }
                 else
                 {

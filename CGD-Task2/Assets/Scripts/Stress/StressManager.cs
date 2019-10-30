@@ -4,8 +4,31 @@ using UnityEngine;
 
 public static class StressManager
 {
+    static float StressLevel;
+
     static bool Burnout = false;
-    static bool Resting = false; 
+    static bool Resting = false;
+
+    //get & Set StressLevel
+    public static void SetStressLevel(float newStressLevel)
+    {
+        StressLevel = newStressLevel;
+    }
+
+    public static void IncreaseStressLevel(float increaseValue)
+    {
+        StressLevel += increaseValue;
+    }
+
+    public static void DecreaseStressLevel(float decreaseValue)
+    {
+        StressLevel -= decreaseValue;
+    }
+
+    public static float GetStressLevel()
+    {
+        return StressLevel;
+    }
 
     //Get & Set BurnOut
     public static void SetBurnout(bool newBurnout)

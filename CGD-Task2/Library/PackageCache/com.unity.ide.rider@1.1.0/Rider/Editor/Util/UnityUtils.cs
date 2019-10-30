@@ -2,7 +2,11 @@ using System;
 using System.Linq;
 using UnityEngine;
 
+<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/Util/UnityUtils.cs
 namespace Packages.Rider.Editor.Util
+=======
+namespace Packages.Rider.Editor
+>>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/UnityUtils.cs
 {
   public static class UnityUtils
   {

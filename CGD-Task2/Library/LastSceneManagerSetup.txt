@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/DroneRunner test TOM.unity
+=======
+- path: Assets/Scenes/StressTester.unity
+>>>>>>> SceneManeger
   isLoaded: 1
   isActive: 1
   isSubScene: 0

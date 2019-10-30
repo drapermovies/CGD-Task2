@@ -5,6 +5,8 @@ using UnityEngine;
 public class BugInitBehaviour : MonoBehaviour
 {
     public GameObject middle;
+    private Vector2 target_pos;
+    private float speed = 1.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,11 +16,14 @@ public class BugInitBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(middle.transform.position);
+     
 
-        if (Vector3.Distance(transform.position, middle.transform.position) > 2)
+        transform.LookAt(middle.transform.position, middle.transform.position * -1);
+        target_pos = new Vector2(middle.transform.position.x, middle.transform.position.y);
+        if (Vector2.Distance(transform.position, target_pos) > 2)
         {
-            transform.position = Vector3.MoveTowards(transform.position, middle.transform.position, Time.deltaTime);
+            Vector2 pos = Vector2.MoveTowards(transform.position, middle.transform.position, Time.deltaTime * speed);
+            transform.position = pos;
         }
         
     }

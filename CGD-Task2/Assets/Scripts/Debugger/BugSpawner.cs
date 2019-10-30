@@ -15,13 +15,16 @@ public class BugSpawner : MonoBehaviour
     private int spawn_number;
     private int spawn_min = 0;
     private int spawn_max = 4;
-    public GameObject[] spawns;
+
+    private Quaternion rot;
+
+    Vector2 spawn_pos;
 
 
     void Start()
     {
-        spawns = new GameObject[4];
         setTimer();
+        rot = Quaternion.identity;
     }
 
     // Update is called once per frame
@@ -49,21 +52,28 @@ public class BugSpawner : MonoBehaviour
         switch(spawn_number)
         {
             case 0:
-                Instantiate(bug_prefab, transform.position, Quaternion.identity, transform);
+                spawn_pos.y = Random.Range(GetComponent<Renderer>().bounds.min.y, GetComponent<Renderer>().bounds.max.y);
+                spawn_pos.x = transform.position.x;
               break;
 
             case 1:
-                Instantiate(bug_prefab, gameObject.transform.GetChild(0).transform.position, Quaternion.identity, transform);
+                spawn_pos.x = Random.Range(gameObject.transform.GetChild(0).GetComponent<Renderer>().bounds.min.x,
+                                           gameObject.transform.GetChild(0).GetComponent<Renderer>().bounds.max.x);
+                spawn_pos.y = gameObject.transform.GetChild(0).transform.position.y;
                 break;
 
             case 2:
-                Instantiate(bug_prefab, gameObject.transform.GetChild(1).transform.position, Quaternion.identity, transform);
+                spawn_pos.y = Random.Range(gameObject.transform.GetChild(1).GetComponent<Renderer>().bounds.min.y,
+                                           gameObject.transform.GetChild(1).GetComponent<Renderer>().bounds.max.y);
+                spawn_pos.x = gameObject.transform.GetChild(1).transform.position.x;
                 break;
 
             case 3:
-                Instantiate(bug_prefab, gameObject.transform.GetChild(2).transform.position, Quaternion.identity, transform);
+                spawn_pos.x = Random.Range(gameObject.transform.GetChild(2).GetComponent<Renderer>().bounds.min.x,
+                                           gameObject.transform.GetChild(2).GetComponent<Renderer>().bounds.max.x);
+                spawn_pos.y = gameObject.transform.GetChild(2).transform.position.y;
                 break;
         }
-        Debug.Log(gameObject.transform.GetChild(2).name);
+        Instantiate(bug_prefab, new Vector2(spawn_pos.x, spawn_pos.y), rot);
     }
 }

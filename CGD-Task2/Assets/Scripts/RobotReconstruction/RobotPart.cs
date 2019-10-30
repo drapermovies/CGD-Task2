@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class RobotPart : MonoBehaviour
 {
-    [SerializeField] private RobotParts part = RobotParts.PART_HEAD;
+    [SerializeField] private RobotPartsEnum part = RobotPartsEnum.PART_HEAD;
 
     private bool was_seen = false;
 
@@ -46,7 +46,10 @@ public class RobotPart : MonoBehaviour
         }
         else if (!render.isVisible && was_seen)
         {
-            Destroy(gameObject);
+            if (!Debug.isDebugBuild)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -57,7 +60,7 @@ public class RobotPart : MonoBehaviour
     {
         int part_num = Random.Range(0, 3);
 
-        part = (RobotParts)part_num;
+        part = (RobotPartsEnum)part_num;
 
         Debug.Log(part);
     }
@@ -90,7 +93,7 @@ public class RobotPart : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            transform.parent = null; //Removes the spawner as a parent
+           transform.parent = null; //Removes the spawner as a parent
         }
     }
 

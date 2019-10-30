@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":662.7388916015625,"y":86.78260040283203,"z":-918.5},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":766.269775390625,"orthographic":true}
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":-3.204017400741577,"y":0.803825855255127,"z":-3.3125100135803224},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":9.025008201599121,"orthographic":true}
+>>>>>>> RobotBuilder

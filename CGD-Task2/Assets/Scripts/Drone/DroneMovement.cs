@@ -22,6 +22,11 @@ public class DroneMovement : MonoBehaviour
     private bool invincible = false;
     private float invis_timer = 0.20f;
 
+
+    Vector2 startLerp, endLerp;
+    public float lerpSpeed;
+    public float timeStartedLerping;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +34,7 @@ public class DroneMovement : MonoBehaviour
         isCentred = true;
         health = healthMax;
         resetTime = 3;
+        //startLerping();
     }
 
     private void Update()
@@ -76,8 +82,9 @@ public class DroneMovement : MonoBehaviour
         }
     }
 
-    void Movement(float direction)
-    {        
+    public void Movement(float direction)
+    {      
+
         // In the centre of the screen
         if (Input.GetKeyUp(KeyCode.A) && isCentred)
         {
@@ -105,7 +112,29 @@ public class DroneMovement : MonoBehaviour
             isCentred = true;
             isRight = false;            
         }
+        startLerp = transform.position;
+        endLerp = startLerp + new Vector2(direction,0);
+
+        //transform.position = Lerp(startLerp, endLerp, timeStartedLerping, lerpSpeed);
+
         transform.Translate(direction, 0, 0);
+    }
+
+    public void startLerping()
+    {
+        timeStartedLerping = Time.time;     
+    }
+
+    public Vector3 Lerp(Vector3 start, Vector3 end, float timeStartedLerping, float lerpTime = 1)
+    {
+        float timeSinceStarted = Time.time - timeStartedLerping;
+
+        float percentageCompleted = timeSinceStarted / lerpTime;
+
+        var result = Vector3.Lerp(start, end, percentageCompleted);
+
+        return result;
+        //https://www.youtube.com/watch?v=62IFyHUdH9U
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -158,22 +187,22 @@ public class DroneMovement : MonoBehaviour
         }
     }
 
-    private void OnMouseDrag()
-    {
-        transform.position = GetMouseWorldPos() - mouse_offset;
-    }
+    //private void OnMouseDrag()
+    //{
+    //    transform.position = GetMouseWorldPos() - mouse_offset;
+    //}
 
-    Vector3 GetMouseWorldPos()
-    {
-        Vector3 mouse_pos = Input.mousePosition;
+    //Vector3 GetMouseWorldPos()
+    //{
+    //    Vector3 mouse_pos = Input.mousePosition;
 
-        mouse_pos.z = Camera.main.WorldToScreenPoint(transform.position).z;
+    //    mouse_pos.z = Camera.main.WorldToScreenPoint(transform.position).z;
 
-        return Camera.main.ScreenToWorldPoint(mouse_pos);
-    }
+    //    return Camera.main.ScreenToWorldPoint(mouse_pos);
+    //}
 
-    private void OnMouseDown()
-    {
-        mouse_offset = transform.position - GetMouseWorldPos();
-    }
+    //private void OnMouseDown()
+    //{
+    //    mouse_offset = transform.position - GetMouseWorldPos();
+    //}
 }

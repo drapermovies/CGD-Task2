@@ -1,6 +1,5 @@
 # Code Editor Package for Rider
 
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/CHANGELOG.md
 ## [1.1.0] - 2019-07-02
 
 new setting to manage list of extensions to be opened with Rider
@@ -11,25 +10,15 @@ path detection (work on unix symlinks)
 speed up for project generation
 lots of bug fixing
 
-=======
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/CHANGELOG.md
 ## [1.0.8] - 2019-05-20
 
 Fix NullReferenceException when External editor was pointing to non-existing Rider everything was broken by null-ref.
 
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/CHANGELOG.md
-=======
-
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/CHANGELOG.md
 ## [1.0.7] - 2019-05-16
 
 Initial migration steps from rider plugin to package.
 Fix OSX check and opening of files.
 
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/CHANGELOG.md
-=======
-
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/CHANGELOG.md
 ## [1.0.6] - 2019-04-30
 
 Ensure asset database is refreshed when generating csproj and solution files.

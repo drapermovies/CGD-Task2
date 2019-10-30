@@ -6,10 +6,7 @@ using System.Security;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
 using Packages.Rider.Editor.Util;
-=======
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
 using UnityEditor;
 using UnityEditor.Compilation;
 using UnityEditor.PackageManager;
@@ -170,14 +167,8 @@ namespace Packages.Rider.Editor
     public bool SyncIfNeeded(IEnumerable<string> affectedFiles, IEnumerable<string> reimportedFiles)
     {
       SetupProjectSupportedExtensions();
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
       
       if (HasFilesBeenModified(affectedFiles, reimportedFiles))
-=======
-
-      // Don't sync if we haven't synced before
-      if (HasSolutionBeenGenerated() && HasFilesBeenModified(affectedFiles, reimportedFiles))
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
       {
         Sync();
         return true;
@@ -199,7 +190,6 @@ namespace Packages.Rider.Editor
     public void Sync()
     {
       SetupProjectSupportedExtensions();
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
       var types = GetAssetPostprocessorTypes();
       bool externalCodeAlreadyGeneratedProjects = OnPreGeneratingCSProjectFiles(types);
 
@@ -209,16 +199,6 @@ namespace Packages.Rider.Editor
       }
       
       OnGeneratedCSProjectFiles(types);
-=======
-      bool externalCodeAlreadyGeneratedProjects = OnPreGeneratingCSProjectFiles();
-
-      if (!externalCodeAlreadyGeneratedProjects)
-      {
-        GenerateAndWriteSolutionAndProjects();
-      }
-
-      OnGeneratedCSProjectFiles();
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
     }
 
     public bool HasSolutionBeenGenerated()
@@ -285,11 +265,7 @@ namespace Packages.Rider.Editor
         : ScriptingLanguage.None;
     }
 
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
     public void GenerateAndWriteSolutionAndProjects(Type[] types)
-=======
-    public void GenerateAndWriteSolutionAndProjects()
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
     {
       // Only synchronize islands that have associated source files and ones that we actually want in the project.
       // This also filters out DLLs coming from .asmdef files in packages.
@@ -299,20 +275,12 @@ namespace Packages.Rider.Editor
 
       var monoIslands = assemblies.ToList();
 
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
       SyncSolution(monoIslands, types);
-=======
-      SyncSolution(monoIslands);
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
       var allProjectIslands = RelevantIslandsForMode(monoIslands).ToList();
       foreach (Assembly assembly in allProjectIslands)
       {
         var responseFileData = ParseResponseFileData(assembly);
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
         SyncProject(assembly, allAssetProjectParts, responseFileData, allProjectIslands, types);
-=======
-        SyncProject(assembly, allAssetProjectParts, responseFileData, allProjectIslands);
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
       }
     }
 
@@ -366,11 +334,7 @@ namespace Packages.Rider.Editor
             continue;
           }
 
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
           assemblyName = FileSystemUtil.FileNameWithoutExtension(assemblyName);
-=======
-          assemblyName = Utility.FileNameWithoutExtension(assemblyName);
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
 
           if (!stringBuilders.TryGetValue(assemblyName, out var projectBuilder))
           {
@@ -412,7 +376,6 @@ namespace Packages.Rider.Editor
       Assembly island,
       Dictionary<string, string> allAssetsProjectParts,
       IEnumerable<ResponseFileData> responseFilesData,
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
       List<Assembly> allProjectIslands,
       Type[] types)
     {
@@ -425,44 +388,21 @@ namespace Packages.Rider.Editor
       if (Path.GetExtension(path) == ".csproj")
       {
         newContents = OnGeneratedCSProject(path, newContents, types);
-=======
-      List<Assembly> allProjectIslands)
-    {
-      SyncProjectFileIfNotChanged(ProjectFile(island),
-        ProjectText(island, allAssetsProjectParts, responseFilesData, allProjectIslands));
-    }
-
-    void SyncProjectFileIfNotChanged(string path, string newContents)
-    {
-      if (Path.GetExtension(path) == ".csproj")
-      {
-        newContents = OnGeneratedCSProject(path, newContents);
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
       }
 
       SyncFileIfNotChanged(path, newContents);
     }
 
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
     void SyncSolutionFileIfNotChanged(string path, string newContents, Type[] types)
     {
       newContents = OnGeneratedSlnSolution(path, newContents, types);
-=======
-    void SyncSolutionFileIfNotChanged(string path, string newContents)
-    {
-      newContents = OnGeneratedSlnSolution(path, newContents);
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
 
       SyncFileIfNotChanged(path, newContents);
     }
 
     static List<Type> SafeGetTypes(System.Reflection.Assembly a)
     {
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
       List<Type> ret;
-=======
-      var ret = new List<Type>();
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
 
       try
       {
@@ -480,15 +420,8 @@ namespace Packages.Rider.Editor
       return ret.Where(r => r != null).ToList();
     }
 
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
     static void OnGeneratedCSProjectFiles(Type[] types)
     {
-=======
-    static void OnGeneratedCSProjectFiles()
-    {
-      IEnumerable<Type> types = AppDomain.CurrentDomain.GetAssemblies().SelectMany(x => SafeGetTypes(x))
-        .Where(x => typeof(AssetPostprocessor).IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract);
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
       var args = new object[0];
       foreach (var type in types)
       {
@@ -504,7 +437,6 @@ namespace Packages.Rider.Editor
       }
     }
 
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
     public static Type[] GetAssetPostprocessorTypes()
     {
       return TypeCache.GetTypesDerivedFrom<AssetPostprocessor>().ToArray(); // doesn't find types from EditorPlugin, which is fine
@@ -512,12 +444,6 @@ namespace Packages.Rider.Editor
 
     static bool OnPreGeneratingCSProjectFiles(Type[] types)
     {
-=======
-    static bool OnPreGeneratingCSProjectFiles()
-    {
-      IEnumerable<Type> types = AppDomain.CurrentDomain.GetAssemblies().SelectMany(x => SafeGetTypes(x))
-        .Where(x => typeof(AssetPostprocessor).IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract);
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
       bool result = false;
       foreach (var type in types)
       {
@@ -540,15 +466,8 @@ namespace Packages.Rider.Editor
       return result;
     }
 
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
     static string OnGeneratedCSProject(string path, string content, Type[] types)
     {
-=======
-    static string OnGeneratedCSProject(string path, string content)
-    {
-      IEnumerable<Type> types = AppDomain.CurrentDomain.GetAssemblies().SelectMany(x => SafeGetTypes(x))
-        .Where(x => typeof(AssetPostprocessor).IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract);
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
       foreach (var type in types)
       {
         var args = new[] {path, content};
@@ -570,15 +489,8 @@ namespace Packages.Rider.Editor
       return content;
     }
 
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
     static string OnGeneratedSlnSolution(string path, string content, Type[] types)
     {
-=======
-    static string OnGeneratedSlnSolution(string path, string content)
-    {
-      IEnumerable<Type> types = AppDomain.CurrentDomain.GetAssemblies().SelectMany(x => SafeGetTypes(x))
-        .Where(x => typeof(AssetPostprocessor).IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract);
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
       foreach (var type in types)
       {
         var args = new[] {path, content};
@@ -646,11 +558,7 @@ namespace Packages.Rider.Editor
         }
       }
 
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
       var assemblyName = FileSystemUtil.FileNameWithoutExtension(assembly.outputPath);
-=======
-      var assemblyName = Utility.FileNameWithoutExtension(assembly.outputPath);
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
 
       // Append additional non-script files that should be included in project generation.
       if (allAssetsProjectParts.TryGetValue(assemblyName, out var additionalAssetsForProject))
@@ -718,14 +626,8 @@ namespace Packages.Rider.Editor
     {
       //replace \ with / and \\ with /
       var escapedFullPath = SecurityElement.Escape(fullReference);
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
       escapedFullPath = escapedFullPath.Replace("\\\\", "/").Replace("\\", "/");
       projectBuilder.Append(" <Reference Include=\"").Append(FileSystemUtil.FileNameWithoutExtension(escapedFullPath))
-=======
-      escapedFullPath = escapedFullPath.Replace("\\", "/");
-      escapedFullPath = escapedFullPath.Replace("\\\\", "/");
-      projectBuilder.Append(" <Reference Include=\"").Append(Utility.FileNameWithoutExtension(escapedFullPath))
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
         .Append("\">").Append(k_WindowsNewline);
       projectBuilder.Append(" <HintPath>").Append(escapedFullPath).Append("</HintPath>").Append(k_WindowsNewline);
       projectBuilder.Append(" </Reference>").Append(k_WindowsNewline);
@@ -733,11 +635,7 @@ namespace Packages.Rider.Editor
 
     public string ProjectFile(Assembly assembly)
     {
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
       return Path.Combine(ProjectDirectory, $"{FileSystemUtil.FileNameWithoutExtension(assembly.outputPath)}.csproj");
-=======
-      return Path.Combine(ProjectDirectory, $"{Utility.FileNameWithoutExtension(assembly.outputPath)}.csproj");
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
     }
 
     public string SolutionFile()
@@ -759,17 +657,10 @@ namespace Packages.Rider.Editor
           new[] {"DEBUG", "TRACE"}.Concat(EditorUserBuildSettings.activeScriptCompilationDefines).Concat(island.defines)
             .Concat(responseFilesData.SelectMany(x => x.Defines)).Distinct().ToArray()),
         MSBuildNamespaceUri,
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
         FileSystemUtil.FileNameWithoutExtension(island.outputPath),
         EditorSettings.projectGenerationRootNamespace,
         k_TargetFrameworkVersion,
         PluginSettings.OverrideLangVersion?PluginSettings.LangVersion:k_TargetLanguageVersion,
-=======
-        Utility.FileNameWithoutExtension(island.outputPath),
-        EditorSettings.projectGenerationRootNamespace,
-        k_TargetFrameworkVersion,
-        k_TargetLanguageVersion,
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
         k_BaseDirectory,
         island.compilerOptions.AllowUnsafeCode | responseFilesData.Any(x => x.Unsafe)
       };
@@ -832,12 +723,9 @@ namespace Packages.Rider.Editor
         @"<Project ToolsVersion=""{0}"" DefaultTargets=""Build"" xmlns=""{6}"">",
         @"  <PropertyGroup>",
         @"    <LangVersion>{10}</LangVersion>",
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
         @"    <_TargetFrameworkDirectories>non_empty_path_generated_by_unity.rider.package</_TargetFrameworkDirectories>",
         @"    <_FullFrameworkReferenceAssemblyPaths>non_empty_path_generated_by_unity.rider.package</_FullFrameworkReferenceAssemblyPaths>", 
         @"    <DisableHandlePackageFileConflicts>true</DisableHandlePackageFileConflicts>",
-=======
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
         @"  </PropertyGroup>",
         @"  <PropertyGroup>",
         @"    <Configuration Condition="" '$(Configuration)' == '' "">Debug</Configuration>",
@@ -908,15 +796,9 @@ namespace Packages.Rider.Editor
       return string.Join("\r\n", text);
     }
 
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
     void SyncSolution(IEnumerable<Assembly> islands, Type[] types)
     {
       SyncSolutionFileIfNotChanged(SolutionFile(), SolutionText(islands), types);
-=======
-    void SyncSolution(IEnumerable<Assembly> islands)
-    {
-      SyncSolutionFileIfNotChanged(SolutionFile(), SolutionText(islands));
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
     }
 
     string SolutionText(IEnumerable<Assembly> islands)
@@ -945,11 +827,7 @@ namespace Packages.Rider.Editor
     {
       var projectEntries = islands.Select(i => string.Format(
         m_SolutionProjectEntryTemplate,
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
         SolutionGuid(i), FileSystemUtil.FileNameWithoutExtension(i.outputPath), Path.GetFileName(ProjectFile(i)),
-=======
-        SolutionGuid(i), Utility.FileNameWithoutExtension(i.outputPath), Path.GetFileName(ProjectFile(i)),
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
         ProjectGuid(i.outputPath)
       ));
 
@@ -1001,11 +879,7 @@ namespace Packages.Rider.Editor
 
     string ProjectGuid(string assembly)
     {
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/ProjectGeneration.cs
       return SolutionGuidGenerator.GuidForProject(m_ProjectName + FileSystemUtil.FileNameWithoutExtension(assembly));
-=======
-      return SolutionGuidGenerator.GuidForProject(m_ProjectName + Utility.FileNameWithoutExtension(assembly));
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/ProjectGeneration.cs
     }
 
     string SolutionGuid(Assembly island)

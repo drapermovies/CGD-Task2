@@ -11,6 +11,7 @@ public static class Loader
         MainMenu,
         SampleScene,
         StressTester,
+        DroneRunner
     }
 
     public static void Load(SceneID scene)

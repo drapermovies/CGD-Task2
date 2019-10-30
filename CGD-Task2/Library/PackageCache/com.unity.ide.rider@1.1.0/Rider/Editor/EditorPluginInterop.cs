@@ -11,7 +11,6 @@ namespace Packages.Rider.Editor
   {
     private static string ourEntryPointTypeName = "JetBrains.Rider.Unity.Editor.PluginEntryPoint";
 
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/EditorPluginInterop.cs
     private static void DisableSyncSolutionOnceCallBack()
     {
       // RiderScriptableSingleton.Instance.CsprojProcessedOnce = true;
@@ -30,8 +29,6 @@ namespace Packages.Rider.Editor
       member.SetValue(instanceVal, true);
     }
     
-=======
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/EditorPluginInterop.cs
     public static string LogPath
     {
       get
@@ -71,7 +68,6 @@ namespace Packages.Rider.Editor
         var method = handlerInstance.GetType()
           .GetMethod("OnOpenedAsset", new[] {typeof(string), typeof(int), typeof(int)});
         if (method == null) return false;
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/EditorPluginInterop.cs
         var assetFilePath = path;
         if (!string.IsNullOrEmpty(path))
           assetFilePath = Path.GetFullPath(path);
@@ -82,15 +78,6 @@ namespace Packages.Rider.Editor
       {
         Debug.Log("Unable to do OpenFile to Rider from dll, fallback to com.unity.ide.rider implementation.");
         Debug.LogException(e);
-=======
-        var assetFilePath = Path.GetFullPath(path);
-        
-        openResult = (bool) method.Invoke(handlerInstance, new object[] {assetFilePath, line, column});
-      }
-      catch (Exception)
-      {
-        Debug.Log("Unable to do OpenFile to Rider from dll, fallback to com.unity.ide.rider implementation.");
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/EditorPluginInterop.cs
       }
 
       return openResult;
@@ -118,26 +105,18 @@ namespace Packages.Rider.Editor
     {
       try
       {
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/EditorPluginInterop.cs
         DisableSyncSolutionOnceCallBack(); // is require for Rider prior to 2019.2
         
         var type = GetEditorPluginAssembly().GetType("JetBrains.Rider.Unity.Editor.AfterUnity56.EntryPoint");
         if (type == null) 
           type = GetEditorPluginAssembly().GetType("JetBrains.Rider.Unity.Editor.UnitTesting.EntryPoint"); // oldRider
-=======
-        var type = GetEditorPluginAssembly().GetType("JetBrains.Rider.Unity.Editor.AfterUnity56.EntryPoint");
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/EditorPluginInterop.cs
         RuntimeHelpers.RunClassConstructor(type.TypeHandle);
       }
       catch (TypeInitializationException ex)
       {
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/EditorPluginInterop.cs
         Debug.LogException(ex);
         if (ex.InnerException != null) 
           Debug.LogException(ex.InnerException);
-=======
-        Debug.LogException(ex.InnerException);
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/EditorPluginInterop.cs
       }
     }
   }

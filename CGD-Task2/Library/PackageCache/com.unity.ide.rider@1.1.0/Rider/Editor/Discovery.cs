@@ -24,10 +24,7 @@ namespace Packages.Rider.Editor
           Path = riderInfo.Path,
           Name = riderInfo.Presentation
         })
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/Discovery.cs
         .OrderBy(a=>a.Name)
-=======
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/Discovery.cs
         .ToArray();
     }
   }
@@ -111,20 +108,12 @@ namespace Packages.Rider.Editor
       var home = Environment.GetEnvironmentVariable("HOME");
       if (string.IsNullOrEmpty(home))
         return new RiderInfo[0];
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/Discovery.cs
 
-=======
-      var pathToBuildTxt = "../../build.txt";
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/Discovery.cs
       //$Home/.local/share/JetBrains/Toolbox/apps/Rider/ch-0/173.3994.1125/bin/rider.sh
       //$Home/.local/share/JetBrains/Toolbox/apps/Rider/ch-0/.channel.settings.json
       var toolboxRiderRootPath = Path.Combine(home, @".local/share/JetBrains/Toolbox/apps/Rider");
       var paths = CollectPathsFromToolbox(toolboxRiderRootPath, "bin", "rider.sh", false)
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/Discovery.cs
         .Select(a => new RiderInfo(a, true)).ToList();
-=======
-        .Select(a => new RiderInfo(GetBuildNumber(Path.Combine(a, pathToBuildTxt)), a, true)).ToList();
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/Discovery.cs
 
       //$Home/.local/share/applications/jetbrains-rider.desktop
       var shortcut = new FileInfo(Path.Combine(home, @".local/share/applications/jetbrains-rider.desktop"));
@@ -139,7 +128,6 @@ namespace Packages.Rider.Editor
           var path = line.Split('"').Where((item, index) => index == 1).SingleOrDefault();
           if (string.IsNullOrEmpty(path))
             continue;
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/Discovery.cs
 
           if (paths.Any(a => a.Path == path)) // avoid adding similar build as from toolbox
             continue;
@@ -152,37 +140,18 @@ namespace Packages.Rider.Editor
       if (new FileInfo(snapInstallPath).Exists)
         paths.Add(new RiderInfo(snapInstallPath, false));
       
-=======
-          var buildTxtPath = Path.Combine(path, pathToBuildTxt);
-          var buildNumber = GetBuildNumber(buildTxtPath);
-          if (paths.Any(a => a.Path == path)) // avoid adding similar build as from toolbox
-            continue;
-          paths.Add(new RiderInfo(buildNumber, path, false));
-        }
-      }
-
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/Discovery.cs
       return paths.ToArray();
     }
 
     private static RiderInfo[] CollectRiderInfosMac()
     {
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/Discovery.cs
-=======
-      var pathToBuildTxt = "Contents/Resources/build.txt";
-
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/Discovery.cs
       // "/Applications/*Rider*.app"
       var folder = new DirectoryInfo("/Applications");
       if (!folder.Exists)
         return new RiderInfo[0];
 
       var results = folder.GetDirectories("*Rider*.app")
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/Discovery.cs
         .Select(a => new RiderInfo(a.FullName, false))
-=======
-        .Select(a => new RiderInfo(GetBuildNumber(Path.Combine(a.FullName, pathToBuildTxt)), a.FullName, false))
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/Discovery.cs
         .ToList();
 
       // /Users/user/Library/Application Support/JetBrains/Toolbox/apps/Rider/ch-1/181.3870.267/Rider EAP.app
@@ -191,18 +160,13 @@ namespace Packages.Rider.Editor
       {
         var toolboxRiderRootPath = Path.Combine(home, @"Library/Application Support/JetBrains/Toolbox/apps/Rider");
         var paths = CollectPathsFromToolbox(toolboxRiderRootPath, "", "Rider*.app", true)
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/Discovery.cs
           .Select(a => new RiderInfo(a, true));
-=======
-          .Select(a => new RiderInfo(GetBuildNumber(Path.Combine(a, pathToBuildTxt)), a, true));
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/Discovery.cs
         results.AddRange(paths);
       }
 
       return results.ToArray();
     }
 
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/Discovery.cs
     internal static string GetBuildNumber(string path)
     {
       var file = new FileInfo(Path.Combine(path, GetRelativePathToBuildTxt()));
@@ -211,32 +175,16 @@ namespace Packages.Rider.Editor
       var text = File.ReadAllText(file.FullName);
       if (text.Length > 3)
         return text.Substring(3);
-=======
-    private static string GetBuildNumber(string path)
-    {
-      var file = new FileInfo(path);
-      if (file.Exists)
-        return File.ReadAllText(file.FullName);
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/Discovery.cs
       return string.Empty;
     }
 
     private static RiderInfo[] CollectRiderInfosWindows()
     {
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/Discovery.cs
-=======
-      var pathToBuildTxt = "../../build.txt";
-
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/Discovery.cs
       var localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
       var toolboxRiderRootPath = Path.Combine(localAppData, @"JetBrains\Toolbox\apps\Rider");
       var installPathsToolbox = CollectPathsFromToolbox(toolboxRiderRootPath, "bin", "rider64.exe", false).ToList();
       var installInfosToolbox = installPathsToolbox
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/Discovery.cs
         .Select(a => new RiderInfo(a, true)).ToList();
-=======
-        .Select(a => new RiderInfo(GetBuildNumber(Path.Combine(a, pathToBuildTxt)), a, true)).ToList();
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/Discovery.cs
 
       var installPaths = new List<string>();
       const string registryKey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
@@ -245,17 +193,12 @@ namespace Packages.Rider.Editor
       CollectPathsFromRegistry(wowRegistryKey, installPaths);
 
       var installInfos = installPaths
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/Discovery.cs
         .Select(a => new RiderInfo(a, false)).ToList();
-=======
-        .Select(a => new RiderInfo(GetBuildNumber(Path.Combine(a, pathToBuildTxt)), a, false)).ToList();
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/Discovery.cs
       installInfos.AddRange(installInfosToolbox);
 
       return installInfos.ToArray();
     }
 
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/Discovery.cs
     private static string GetRelativePathToBuildTxt()
     {
       switch (SystemInfo.operatingSystemFamily)
@@ -269,8 +212,6 @@ namespace Packages.Rider.Editor
       throw new Exception("Unknown OS");
     }
 
-=======
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/Discovery.cs
     private static void CollectPathsFromRegistry(string registryKey, List<string> installPaths)
     {
       using (var key = Registry.LocalMachine.OpenSubKey(registryKey))
@@ -446,24 +387,11 @@ namespace Packages.Rider.Editor
       public string BuildVersion;
       public string Path;
 
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/Discovery.cs
       public RiderInfo(string path, bool isToolbox)
       {
         BuildVersion = GetBuildNumber(path);
         Path = new FileInfo(path).FullName; // normalize separators
         var presentation = "Rider " + BuildVersion;
-=======
-      public RiderInfo(string buildVersion, string path, bool isToolbox)
-      {
-        BuildVersion = buildVersion;
-        Path = new FileInfo(path).FullName; // normalize separators
-
-        var version = string.Empty;
-        if (buildVersion.Length > 3)
-          version = buildVersion.Substring(3);
-
-        var presentation = "Rider " + version;
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/Discovery.cs
         if (isToolbox)
           presentation += " (JetBrains Toolbox)";
 

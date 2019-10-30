@@ -1,4 +1,3 @@
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/Util/FileSystemUtil.cs
 using System;
 using System.ComponentModel;
 using System.IO;
@@ -27,12 +26,6 @@ namespace Packages.Rider.Editor.Util
       return new FileInfo(sb.ToString()).FullName;
     }
     
-=======
-namespace Packages.Rider.Editor
-{
-  public static class Utility
-  {
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/Utility.cs
     public static string FileNameWithoutExtension(string path)
     {
       if (string.IsNullOrEmpty(path))
@@ -63,14 +56,11 @@ namespace Packages.Rider.Editor
 
       return path.Substring(indexOfSlash, indexOfDot - indexOfSlash);
     }
-<<<<<<< HEAD:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.1.0/Rider/Editor/Util/FileSystemUtil.cs
     
     public static bool EditorPathExists(string editorPath)
     {
       return SystemInfo.operatingSystemFamily == OperatingSystemFamily.MacOSX && new DirectoryInfo(editorPath).Exists 
              || SystemInfo.operatingSystemFamily != OperatingSystemFamily.MacOSX && new FileInfo(editorPath).Exists;
     }
-=======
->>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/Utility.cs
   }
 }

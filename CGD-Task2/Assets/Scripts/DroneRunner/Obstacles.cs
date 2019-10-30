@@ -25,13 +25,4 @@ public class Obstacles : MonoBehaviour
             Destroy(gameObject);
         }        
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //if collides with player
-        if(collision.gameObject.tag == "player")
-        {
-
-        }
-    }
 }

@@ -1,9 +1,5 @@
 sceneSetups:
-<<<<<<< HEAD
 - path: Assets/Scenes/DroneRunner test TOM.unity
-=======
-- path: Assets/Scenes/Drone.unity
->>>>>>> DroneRunner
   isLoaded: 1
   isActive: 1
   isSubScene: 0

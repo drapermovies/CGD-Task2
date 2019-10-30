@@ -19,6 +19,10 @@ public class DroneMovement : MonoBehaviour
     
     Vector3 mouse_offset = Vector3.zero;
 
+    private float invincibility_timer = 1.5f;
+    private bool invincible = false;
+    private float invis_timer = 0.25f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,9 +38,33 @@ public class DroneMovement : MonoBehaviour
             RechargeHealth();
         if (health != 0)
             resetTime = 3;
-        
+
+        if(invincible)
+        {
+            updateInvincibility();
+        }        
     }
 
+    void updateInvincibility()
+    {
+        invincibility_timer -= Time.deltaTime;
+        invis_timer -= Time.deltaTime;
+        if (invis_timer <= 0.0f)
+        {
+            gameObject.GetComponent<SpriteRenderer>().enabled = !gameObject.GetComponent<SpriteRenderer>().enabled;
+            invis_timer = 0.25f;
+        }
+        if (invincibility_timer <= 0.0f)
+        {
+            invincible = false;
+            invincibility_timer = 1.5f;
+            invis_timer = 0.25f;
+            if (!gameObject.GetComponent<SpriteRenderer>().enabled)
+            {
+                gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            }
+        }
+    }
 
     void FixedUpdate()
     {
@@ -85,11 +113,20 @@ public class DroneMovement : MonoBehaviour
         transform.Translate(direction, 0, 0);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Rubbish")
+        if (health != 0)
         {
-            health--;
+            if (other.tag == "Obstacle" && !invincible)
+            {
+                Destroy(other.gameObject);
+                health--;
+                invincible = true;
+            }
+            else if (other.tag == "Pickup")
+            {
+                Destroy(other.gameObject);
+            }
         }
     }
 

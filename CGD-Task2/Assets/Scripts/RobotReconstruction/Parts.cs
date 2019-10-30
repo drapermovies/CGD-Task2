@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-public enum RobotParts
+public enum RobotPartsEnum
 {
     PART_HEAD = 0,
     PART_TORSO = 1,

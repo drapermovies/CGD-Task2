@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class StartGameScript : MonoBehaviour
 {
-    private void OnMouseDown()
+    private void OnMouseUp()
     {
         Debug.Log("START GAME");
-        Loader.Load(Loader.Scene.SampleScene); //TEMP need to change to gameplay scene
+        Loader.Load(Loader.SceneID.SampleScene); //TEMP need to change to gameplay scene
     }
 }

@@ -121,6 +121,10 @@ public class DroneMovement : MonoBehaviour
                 {
                     invincibility_timer = 4.5f;
                 }
+                if(!StressManager.GetBurnout() && !StressManager.GetResting())
+                {
+                    StressManager.IncreaseStressLevel(1.0f);
+                }
             }
             else if (other.tag == "Pickup")
             {

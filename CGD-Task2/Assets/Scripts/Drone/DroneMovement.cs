@@ -11,10 +11,13 @@ public class DroneMovement : MonoBehaviour
     public bool isRight;
 
     public int healthMax;
-    private int health;
+    public int health;
+    public float resetTime;
     private bool isCharging;
 
     private Vector3 startPos;
+    
+    Vector3 mouse_offset = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -22,14 +25,16 @@ public class DroneMovement : MonoBehaviour
         startPos = transform.position;
         isCentred = true;
         health = healthMax;
+        resetTime = 3;
     }
 
     private void Update()
     {
         if (health == 0)
-        {
             RechargeHealth();
-        }
+        if (health != 0)
+            resetTime = 3;
+        
     }
 
 
@@ -90,12 +95,19 @@ public class DroneMovement : MonoBehaviour
 
     void RechargeHealth()
     {
-        float resetTime = 3;
 
         isLeft = false;
         isCentred = true;
         isRight = false;
         transform.position = startPos - new Vector3 (0,moveDir);
+
+
+        ResetTime();
+    }
+
+    void ResetTime()
+    {
+        
 
         if (resetTime > 0)
         {
@@ -107,4 +119,24 @@ public class DroneMovement : MonoBehaviour
             transform.position = startPos;
         }
     }
+
+    private void OnMouseDrag()
+    {
+        transform.position = GetMouseWorldPos() - mouse_offset;
+    }
+
+    Vector3 GetMouseWorldPos()
+    {
+        Vector3 mouse_pos = Input.mousePosition;
+
+        mouse_pos.z = Camera.main.WorldToScreenPoint(transform.position).z;
+
+        return Camera.main.ScreenToWorldPoint(mouse_pos);
+    }
+
+    private void OnMouseDown()
+    {
+        mouse_offset = transform.position - GetMouseWorldPos();
+    }
+
 }

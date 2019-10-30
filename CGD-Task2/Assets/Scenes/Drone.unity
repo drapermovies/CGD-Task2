@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 1406706083}
   - component: {fileID: 1406706085}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: Drone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -301,3 +301,5 @@ MonoBehaviour:
   isCentred: 0
   isRight: 0
   healthMax: 3
+  health: 0
+  resetTime: 0

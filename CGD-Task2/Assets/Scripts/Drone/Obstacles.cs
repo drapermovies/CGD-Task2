@@ -14,6 +14,14 @@ public class Obstacles : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(StressManager.GetBurnout())
+        {
+            speed = 7.5f;
+        }
+        else
+        {
+            speed = 5.0f;
+        }
         //move downwards and delete if reach the bottom
         Vector3 pos = gameObject.transform.position;
 

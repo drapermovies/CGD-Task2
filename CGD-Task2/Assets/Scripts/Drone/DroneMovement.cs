@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DroneMovement : MonoBehaviour
 {
-
     public float moveDir;
     public bool isLeft;
     public bool isCentred;
@@ -21,7 +20,7 @@ public class DroneMovement : MonoBehaviour
 
     private float invincibility_timer = 1.5f;
     private bool invincible = false;
-    private float invis_timer = 0.25f;
+    private float invis_timer = 0.20f;
 
     // Start is called before the first frame update
     void Start()
@@ -38,8 +37,19 @@ public class DroneMovement : MonoBehaviour
             RechargeHealth();
         if (health != 0)
             resetTime = 3;
+        if (health > 0)
+        {
+            if (Input.GetKeyUp(KeyCode.A) && !isLeft)
+            {
+                Movement(-moveDir);
+            }
+            else if (Input.GetKeyUp(KeyCode.D) && !isRight)
+            {
+                Movement(moveDir);
+            }
+        }
 
-        if(invincible)
+        if (invincible)
         {
             updateInvincibility();
         }        
@@ -52,31 +62,16 @@ public class DroneMovement : MonoBehaviour
         if (invis_timer <= 0.0f)
         {
             gameObject.GetComponent<SpriteRenderer>().enabled = !gameObject.GetComponent<SpriteRenderer>().enabled;
-            invis_timer = 0.25f;
+            invis_timer = 0.20f;
         }
         if (invincibility_timer <= 0.0f)
         {
             invincible = false;
             invincibility_timer = 1.5f;
-            invis_timer = 0.25f;
+            invis_timer = 0.20f;
             if (!gameObject.GetComponent<SpriteRenderer>().enabled)
             {
                 gameObject.GetComponent<SpriteRenderer>().enabled = true;
-            }
-        }
-    }
-
-    void FixedUpdate()
-    {
-        if (health > 0)
-        {
-            if (Input.GetKeyUp(KeyCode.A) && !isLeft)
-            {
-                Movement(-moveDir);
-            }
-            else if (Input.GetKeyUp(KeyCode.D) && !isRight)
-            {
-                Movement(moveDir);
             }
         }
     }
@@ -122,6 +117,10 @@ public class DroneMovement : MonoBehaviour
                 Destroy(other.gameObject);
                 health--;
                 invincible = true;
+                if(health == 0)
+                {
+                    invincibility_timer = 4.5f;
+                }
             }
             else if (other.tag == "Pickup")
             {
@@ -144,8 +143,6 @@ public class DroneMovement : MonoBehaviour
 
     void ResetTime()
     {
-        
-
         if (resetTime > 0)
         {
             resetTime -= Time.deltaTime;
@@ -175,5 +172,4 @@ public class DroneMovement : MonoBehaviour
     {
         mouse_offset = transform.position - GetMouseWorldPos();
     }
-
 }

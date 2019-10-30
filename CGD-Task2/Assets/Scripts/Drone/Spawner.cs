@@ -7,11 +7,11 @@ public class Spawner : MonoBehaviour
     public GameObject[] spawners;
     public GameObject[] prefabs;
 
-    private float max_timer = 1.0f;
+    private float max_timer = 1.25f;
     private float timer;
 
     private int pickup_counter;
-    private int pickup_rate = 5;
+    private int pickup_rate = 10;
 
     private int last_spawner = 0;
 
@@ -25,6 +25,14 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (StressManager.GetBurnout())
+        {
+            max_timer = 0.75f;
+        }
+        else
+        {
+            max_timer = 1.25f;
+        }
         //when timer reaches 0 spawn an instance of obstacle or item at randomised spawner pos;
         timer -= Time.deltaTime;
         if(timer <= 0.0f)

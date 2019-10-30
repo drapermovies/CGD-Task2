@@ -1,11 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+
 using UnityEngine;
+using UnityEditor; //Used with System.IO for File Reading
 using UnityEngine.EventSystems;
 
 public class RobotPart : MonoBehaviour
 {
-    [SerializeField] private RobotPartsEnum part = RobotPartsEnum.PART_HEAD;
+    public RobotPartsEnum part = RobotPartsEnum.PART_HEAD;
+
+    public string obj_name { get; set; }
+
+    public bool is_fading { get; set; }
+
+    public List<string> colours;
 
     private bool was_seen = false;
 
@@ -14,12 +23,30 @@ public class RobotPart : MonoBehaviour
     Vector3 mouse_offset = Vector3.zero;
 
     /*
-     * Called just after object creation
+     * Called on class creation
+     */
+    public RobotPart()
+    {
+        //A list of colours for retrieving later
+        colours = new List<string>();
+        AssignColours("Assets/Sprites/Head");
+    }
+
+    /*
+     * Called when the object starts being active
      */
     private void Start()
     {
+        obj_name = "";
+
         GenerateBodyPart();
+
         target_scale = transform.localScale;
+        GetComponent<SpriteRenderer>().sprite = GenerateSprite();
+
+        transform.localScale = new Vector3(0.25f, 0.25f, 1f);
+        ScaleBoundingBox();
+
         //transform.localScale = new Vector3(0.1f, 0.1f, 0.1f); //Code to make object appear nice when spawning by scaling up the obj
     }
 
@@ -46,10 +73,15 @@ public class RobotPart : MonoBehaviour
         }
         else if (!render.isVisible && was_seen)
         {
-            if (!Debug.isDebugBuild)
+            if (!EditorApplication.isPaused)
             {
                 Destroy(gameObject);
             }
+        }
+
+        if(is_fading)
+        {
+            FadeObjectOut();
         }
     }
 
@@ -61,8 +93,6 @@ public class RobotPart : MonoBehaviour
         int part_num = Random.Range(0, 3);
 
         part = (RobotPartsEnum)part_num;
-
-        Debug.Log(part);
     }
 
     /*
@@ -79,6 +109,9 @@ public class RobotPart : MonoBehaviour
         transform.position = position;
     }
 
+    /*
+     * Called whenever the mouse is pressed
+     */
     private void OnMouseDown()
     {
         mouse_offset = transform.position - GetMouseWorldPos();
@@ -89,8 +122,6 @@ public class RobotPart : MonoBehaviour
      */
     private void OnMouseOver()
     {
-        GetComponent<SpriteRenderer>().color = Color.red;
-
         if (Input.GetMouseButton(0))
         {
            transform.parent = null; //Removes the spawner as a parent
@@ -110,7 +141,11 @@ public class RobotPart : MonoBehaviour
      */
     private void OnMouseExit()
     {
-        GetComponent<SpriteRenderer>().color = Color.white;
+        if (transform.parent == null)
+        {
+            Debug.LogError("Destroy me");
+            //Destroy(gameObject);
+        }
     }
 
     private void ScaleTransform()
@@ -131,8 +166,203 @@ public class RobotPart : MonoBehaviour
     {
         Vector3 mouse_pos = Input.mousePosition;
 
+        //This line converts object z position to screen space
+        //Changed back to world space in the return statement
         mouse_pos.z = Camera.main.WorldToScreenPoint(transform.position).z;
 
+        //Returns mouse pos and modified z pos converted to world space
         return Camera.main.ScreenToWorldPoint(mouse_pos);
+    }
+
+    private Sprite GenerateSprite()
+    {
+        Sprite sprite = null;
+        string path = "Assets/Sprites/";
+
+        switch(part)
+        {
+            case RobotPartsEnum.PART_HEAD:
+            {
+                path += "Head";
+                break;
+            }
+            case RobotPartsEnum.PART_TORSO:
+            {
+                path += "Torso";
+                break;
+            }
+            case RobotPartsEnum.PART_LEGS:
+            {
+                path += "Legs";
+                break;
+            }
+            default:
+            {
+                Debug.LogError("Part not found" + part);
+                break;
+            }
+        }
+
+        uint random_range = 0;
+
+        if(AssetDatabase.IsValidFolder(path))
+        {
+            foreach(string file in Directory.GetFiles(path))
+            {
+                if (Path.GetExtension(file) == ".jpg" || 
+                    Path.GetExtension(file) == ".png")
+                {
+                    random_range++;
+                }
+            }
+        }
+
+        //Used to randomly assign a sprite
+        int random_number = (int)Random.Range(0, random_range);
+
+        obj_name = GetColour(random_number);
+
+        path += "/" + obj_name;
+        path += TryExtension(path);
+
+        //Load Sprite
+        if(System.IO.File.Exists(path))
+        {
+            byte[] bytes = System.IO.File.ReadAllBytes(path);
+            Texture2D texture = new Texture2D(1, 1);
+            texture.LoadImage(bytes);
+            sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), 
+                                    new Vector2(0.5f, 0.5f));
+        }
+        else
+        {
+            Debug.LogError("Cannot find " + path);
+        }
+
+        return sprite;
+    }
+
+    /*
+     * Returns colour for randomly getting sprite
+     */
+    private string GetColour(int number)
+    {
+        string colour = "";
+
+        switch(number)
+        {
+            case 0:
+            {
+                colour = "Blue";
+                break;
+            }
+            case 1:
+            {
+                colour = "Red";
+                break;
+            }
+            default:
+            {
+               Debug.LogError("Can't find colour " + colour + " with ID " + 
+                              number);
+               break;
+            }
+        }
+
+        return colour;
+    }
+
+    /*
+     * Gets the file extension of a sprite
+     */
+    private string TryExtension(string path)
+    {
+        string extension = ".png";
+        int attempts = 0; //Used to iterate through file types
+
+        while(!System.IO.File.Exists(path + extension))
+        {
+            //Change extension type till we get a match
+            extension = ".jpg"; 
+            attempts++;
+            if(attempts > 1)
+            {
+                extension = "";
+                Debug.LogError("No more extensions");
+            }
+        }
+        return extension;
+    }
+
+    /*
+     * Scales bounding box in relation to sprite chosen
+     */
+    private void ScaleBoundingBox()
+    {
+       BoxCollider2D box_collider = GetComponent<BoxCollider2D>();
+       switch(part)
+        {
+            case RobotPartsEnum.PART_HEAD:
+            {
+                box_collider.size = new Vector2(7f, 4.5f);
+                break;
+            }
+            case RobotPartsEnum.PART_TORSO:
+            {
+                box_collider.size = new Vector2(6f, 5f);
+                break;
+            }
+            case RobotPartsEnum.PART_LEGS:
+            {
+                box_collider.size = new Vector2(3, 3);
+
+                //Minor tweaks because the leg's offset for some reason
+                box_collider.offset = new Vector2(0f, 0.1f); 
+
+                break;
+            }
+        }
+    }
+
+    /*
+     * Allows us to get colour names to retrieve in other classes
+     */
+    void AssignColours(string path)
+    {
+        foreach(string file in Directory.GetFiles(path))
+        {
+            int start_point = file.Length - 4;
+            string extension = file.Substring(start_point, 4);
+
+            if (extension == ".jpg" || extension == ".png")
+            {
+                int length = file.Length - 4 - 20;
+                string file_name = file.Substring(20, length);
+                colours.Add(file_name);
+
+                Debug.Log(file_name);
+            }
+        }
+    }
+
+    private void FadeObjectOut()
+    {
+        Color sprite_colour = transform.GetComponent<SpriteRenderer>().color;
+        Color change_colour = sprite_colour;
+
+        if (sprite_colour.a > 0.1f)
+        {
+            change_colour.a = 0f;
+        }
+        else
+        {
+            sprite_colour.a = 0f;
+            Destroy(gameObject);
+        }
+        Debug.Log(sprite_colour.a);
+
+
+        transform.GetComponent<SpriteRenderer>().color = Color.Lerp(sprite_colour, 
+                                                change_colour, 5f * Time.deltaTime);
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public bool was_dragged { get; set; }
+
     [SerializeField] private GameObject body_part = null;
     [SerializeField] private float conveyor_speed = 3.0f; //Time object moves across the screen
     [SerializeField] private float spawn_rate = 0.85f; //Time in seconds between parts spawning
@@ -69,5 +71,15 @@ public class Spawner : MonoBehaviour
                 break;
             }
         }
+    }
+
+    private void OnMouseEnter()
+    {
+        was_dragged = false;
+    }
+
+    private void OnMouseExit()
+    {
+        was_dragged = true;
     }
 }

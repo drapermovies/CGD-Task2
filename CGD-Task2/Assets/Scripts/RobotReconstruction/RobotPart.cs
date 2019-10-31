@@ -29,7 +29,7 @@ public class RobotPart : MonoBehaviour
     {
         //A list of colours for retrieving later
         colours = new List<string>();
-        AssignColours("Assets/Sprites/Head");
+        AssignColours("Assets/Sprites/RobotReconstruction/Head");
     }
 
     /*
@@ -177,7 +177,7 @@ public class RobotPart : MonoBehaviour
     private Sprite GenerateSprite()
     {
         Sprite sprite = null;
-        string path = "Assets/Sprites/";
+        string path = "Assets/Sprites/RobotReconstruction/";
 
         switch(part)
         {
@@ -287,8 +287,9 @@ public class RobotPart : MonoBehaviour
             attempts++;
             if(attempts > 1)
             {
-                extension = "";
+                extension = null;
                 Debug.LogError("No more extensions");
+                Debug.Break();
             }
         }
         return extension;
@@ -333,14 +334,46 @@ public class RobotPart : MonoBehaviour
         {
             int start_point = file.Length - 4;
             string extension = file.Substring(start_point, 4);
+            int length = file.Length - 4;
 
             if (extension == ".jpg" || extension == ".png")
             {
-                int length = file.Length - 4 - 20;
-                string file_name = file.Substring(20, length);
-                colours.Add(file_name);
+                int place = 0;
+                //Get correct variable from path, instead of hard code
+                string to_look = "RobotReconstruction"; //Folder to look for
 
-                Debug.Log(file_name);
+                foreach (char c in path)
+                {
+                    if (c == '/')
+                    {
+                        string sub = file.Substring(place++, to_look.Length);
+
+                        if (sub == to_look)
+                        {
+                            place += to_look.Length + 1; //Calculates where to read file
+                            length -= place; //Calculates how long to read file for
+                            int file_place = 0;
+
+                            string file_name = file.Substring(place, length);
+                            int file_length = 0;
+
+                            foreach(char ch in file_name)
+                            {
+                                if(ch == '\\')
+                                {
+                                    file_place++;
+                                    file_length = file_name.Length - file_place;
+                                    file_name = file_name.Substring(file_place, file_length);
+                                    colours.Add(file_name);
+                                    return;
+                                }
+                                file_place++;
+                            }
+                            return;
+                        }
+                    }
+                    place++;
+                }
             }
         }
     }

@@ -68,13 +68,13 @@ public class RobotGameUI : MonoBehaviour
     private Sprite GenerateSprite(string part_type)
     {
         Sprite sprite = null;
-        string path = "Assets/Sprites/";
+        string path = "Assets/Sprites/RobotReconstruction/";
 
         path += part_type + "/";
 
-        uint random_range = 0;
-
         path += FindObjectOfType<RobotRandomiser>().parts[part_type];
+
+        Debug.Log(FindObjectOfType<RobotRandomiser>().parts[part_type].ToString());
 
         path += TryExtension(path);
 

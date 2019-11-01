@@ -258,7 +258,17 @@ public class RobotPart : MonoBehaviour
             }
             case 1:
             {
+                colour = "Grey";
+                break;
+            }
+            case 2:
+            {
                 colour = "Red";
+                break;
+            }
+            case 3:
+            {
+                colour = "Pink";
                 break;
             }
             default:
@@ -287,9 +297,8 @@ public class RobotPart : MonoBehaviour
             attempts++;
             if(attempts > 1)
             {
-                extension = null;
                 Debug.LogError("No more extensions");
-                Debug.Break();
+                return null;
             }
         }
         return extension;
@@ -338,42 +347,8 @@ public class RobotPart : MonoBehaviour
 
             if (extension == ".jpg" || extension == ".png")
             {
-                int place = 0;
-                //Get correct variable from path, instead of hard code
-                string to_look = "RobotReconstruction"; //Folder to look for
-
-                foreach (char c in path)
-                {
-                    if (c == '/')
-                    {
-                        string sub = file.Substring(place++, to_look.Length);
-
-                        if (sub == to_look)
-                        {
-                            place += to_look.Length + 1; //Calculates where to read file
-                            length -= place; //Calculates how long to read file for
-                            int file_place = 0;
-
-                            string file_name = file.Substring(place, length);
-                            int file_length = 0;
-
-                            foreach(char ch in file_name)
-                            {
-                                if(ch == '\\')
-                                {
-                                    file_place++;
-                                    file_length = file_name.Length - file_place;
-                                    file_name = file_name.Substring(file_place, file_length);
-                                    colours.Add(file_name);
-                                    return;
-                                }
-                                file_place++;
-                            }
-                            return;
-                        }
-                    }
-                    place++;
-                }
+                string file_name = Path.GetFileNameWithoutExtension(file);
+                colours.Add(file_name);
             }
         }
     }
@@ -392,8 +367,6 @@ public class RobotPart : MonoBehaviour
             sprite_colour.a = 0f;
             Destroy(gameObject);
         }
-        Debug.Log(sprite_colour.a);
-
 
         transform.GetComponent<SpriteRenderer>().color = Color.Lerp(sprite_colour, 
                                                 change_colour, 5f * Time.deltaTime);

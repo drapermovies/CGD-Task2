@@ -74,8 +74,6 @@ public class RobotGameUI : MonoBehaviour
 
         path += FindObjectOfType<RobotRandomiser>().parts[part_type];
 
-        Debug.Log(FindObjectOfType<RobotRandomiser>().parts[part_type].ToString());
-
         path += TryExtension(path);
 
         //Load Sprite

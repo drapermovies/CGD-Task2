@@ -106,11 +106,13 @@ public class RobotRandomiser : MonoBehaviour
      */
     private void ChangeValue(string key, string value, RobotPart child)
     {
-        if(value == child.obj_name &&
-            !part_success[key])
+        if(value == child.obj_name)
         {
-            //FindObjectOfType<RobotGameManager>().ChangeScore(5);
-            part_success[key] = true;
+            if (!part_success[key])
+            {
+                FindObjectOfType<RobotGameManager>().ChangeScore(5);
+                part_success[key] = true;
+            }
         }
         else
         {

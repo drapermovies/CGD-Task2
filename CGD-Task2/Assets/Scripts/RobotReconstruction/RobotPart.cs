@@ -25,11 +25,11 @@ public class RobotPart : MonoBehaviour
     /*
      * Called on class creation
      */
-    public RobotPart()
+    public RobotPart(string path = "Assets/Sprites/RobotReconstruction/Head")
     {
         //A list of colours for retrieving later
         colours = new List<string>();
-        AssignColours("Assets/Sprites/RobotReconstruction/Head");
+        AssignColours(path);
     }
 
     /*
@@ -53,10 +53,14 @@ public class RobotPart : MonoBehaviour
     /*
      * Called on destruction
      */
-    private void OnDestroy()
+     private void OnDestroy()
     {
-        FindObjectOfType<Spawner>().DestroyBodyPart(this.transform);
-    }
+        Spawner spawner = FindObjectOfType<Spawner>();
+
+        if (spawner == null) return;
+
+        spawner.DestroyBodyPart(this.transform);
+     }
 
     /*
      * Called once a frame
@@ -133,18 +137,14 @@ public class RobotPart : MonoBehaviour
      */
     private void OnMouseDrag()
     {
-        transform.position = GetMouseWorldPos() - mouse_offset;
-    }
+        Transform obj = FindObjectOfType<RobotGoal>().transform;
 
-    /*
-     * Called when the mouse is no longer hovering over an object
-     */
-    private void OnMouseExit()
-    {
-        if (transform.parent == null)
+        foreach(Transform child in obj.GetComponentInChildren<Transform>())
         {
-            Debug.LogError("Destroy me");
-            //Destroy(gameObject);
+            if(child.transform.position != transform.position)
+            {
+                transform.position = GetMouseWorldPos() - mouse_offset;
+            }
         }
     }
 
@@ -231,8 +231,9 @@ public class RobotPart : MonoBehaviour
             byte[] bytes = System.IO.File.ReadAllBytes(path);
             Texture2D texture = new Texture2D(1, 1);
             texture.LoadImage(bytes);
-            sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), 
-                                    new Vector2(0.5f, 0.5f));
+            sprite = Sprite.Create(texture, 
+                                   new Rect(0, 0, texture.width, texture.height), 
+                                   new Vector2(0.5f, 0.5f));
         }
         else
         {
@@ -269,6 +270,11 @@ public class RobotPart : MonoBehaviour
             case 3:
             {
                 colour = "Pink";
+                break;
+            }
+            case 4:
+            {
+                colour = "Gold";
                 break;
             }
             default:

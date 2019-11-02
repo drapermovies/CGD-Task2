@@ -42,7 +42,18 @@ public class RobotRandomiser : MonoBehaviour
             {
                 if(part.transform.parent == null)
                 {
-                    part.is_fading = true;
+                    RobotGoal goal = FindObjectOfType<RobotGoal>();
+
+                    if (goal != null)
+                    {
+                        foreach(Transform child in goal.transform.GetComponentInChildren<Transform>())
+                        {
+                            if(part.transform.position == child.transform.position)
+                            {
+                                part.is_fading = true;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -59,31 +70,54 @@ public class RobotRandomiser : MonoBehaviour
             //Finds parts that aren't children of the conveyor
             if (child.transform.parent == null)
             {
-                switch (child.part)
+                RobotGoal goal = FindObjectOfType<RobotGoal>();
+                //Check we're in the goal zone
+                if (goal.in_bound)
                 {
-                    case RobotPartsEnum.PART_HEAD:
+                    switch (child.part)
                     {
-                        parts.TryGetValue("Head", out test);
+                        case RobotPartsEnum.PART_HEAD:
+                        {
+                            parts.TryGetValue("Head", out test);
 
-                        ChangeValue("Head", test, child);
+                            ChangeValue("Head", test, child);
 
-                        break;
-                    }
-                    case RobotPartsEnum.PART_TORSO:
-                    {
-                        parts.TryGetValue("Torso", out test);
+                            if (test == child.obj_name)
+                            {
+                                //Get "Head" child and set transform position to that
+                                child.transform.position = goal.transform.GetChild(0).position;
+                            }
 
-                        ChangeValue("Torso", test, child);
+                            break;
+                        }
+                        case RobotPartsEnum.PART_TORSO:
+                        {
+                            parts.TryGetValue("Torso", out test);
 
-                        break;
-                    }
-                    case RobotPartsEnum.PART_LEGS:
-                    {
-                        parts.TryGetValue("Legs", out test);
+                            ChangeValue("Torso", test, child);
 
-                        ChangeValue("Legs", test, child);
+                            if (test == child.obj_name)
+                            {
+                                //Get "Torso" child and set transform position to that
+                                child.transform.position = goal.transform.GetChild(1).position;
+                            }
 
-                        break;
+                            break;
+                        }
+                        case RobotPartsEnum.PART_LEGS:
+                        {
+                            parts.TryGetValue("Legs", out test);
+
+                            ChangeValue("Legs", test, child);
+
+                            if (test == child.obj_name)
+                            {
+                                //Get "Legs" child and set transform position to that
+                                child.transform.position = goal.transform.GetChild(2).position;
+                            }
+
+                            break;
+                        }
                     }
                 }
             }
@@ -135,7 +169,12 @@ public class RobotRandomiser : MonoBehaviour
 
         AssignPart("Head", r_b.colours, ref length);
         AssignPart("Torso", r_b.colours, ref length);
-        parts.Add("Legs", r_b.colours[0]);
+
+        //Reset these variables because legs have different variables from torso/head
+        r_b = new RobotPart("Assets/Sprites/RobotReconstruction/Legs");
+        length = r_b.colours.Count;
+
+        AssignPart("Legs", r_b.colours, ref length);
 
         //Used to determine if we have the part
         part_success.Add("Head", false);

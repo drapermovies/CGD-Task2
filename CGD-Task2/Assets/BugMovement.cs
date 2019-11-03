@@ -11,25 +11,35 @@ public class BugMovement : MonoBehaviour
     [SerializeField] public float YDirectionSpeed = 0;
 
     //movement rng variables
-    public float minXSpeed = -1;
-    public float maxXSpeed = 1;
-    public float minYSpeed = -1;
-    public float maxYSpeed = 1;
+    public float minXSpeed = -1f;
+    public float maxXSpeed = 1f;
+    public float minYSpeed = -1f;
+    public float maxYSpeed = 1f;
     public float xDrag = 100;
     public float yDrag = 100;
 
     //rng variables
-    public float cooldownUntilRNG = 10;
-    public float minCooldownRNG = 10;
-    public float maxCoolDownRNG = 50;
+    public float cooldownUntilRNG = 0.1f;
+    public float minCooldownRNG = 1.5f;
+    public float maxCoolDownRNG = 3f;
+    public float chanceToGoToDanger = 30f;
+    public float debuggerTimer = 0;
+
+    //other
+    public GameObject dangerZone;
+
+    //debug
+    public bool dangering = false;
 
     Rigidbody2D bug;
+    Rigidbody2D dangerZoneArea;
     Vector3 velocity = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
     {
         bug = GetComponent<Rigidbody2D>();
+        dangerZoneArea = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -37,6 +47,20 @@ public class BugMovement : MonoBehaviour
     {
         MovementManager();
         rngManipulation();
+
+        if (debuggerTimer > 10)
+        {
+            baseSpeed = baseSpeed * 1.5f;
+            chanceToGoToDanger = chanceToGoToDanger + 5f;
+            if (minCooldownRNG != maxCoolDownRNG)
+            {
+                minCooldownRNG = minCooldownRNG + 0.1f;
+            }
+            debuggerTimer = 0;
+        }
+
+        //track game timer
+        debuggerTimer += Time.deltaTime;
     }
 
     private void MovementManager()
@@ -44,51 +68,90 @@ public class BugMovement : MonoBehaviour
         bug.velocity = transform.TransformDirection(velocity);
         if (XDirectionSpeed != 0)
         {
-            velocity.x = baseSpeed * XDirectionSpeed * (xDrag / 100);
+            velocity.x = baseSpeed * XDirectionSpeed;
         }
         if (YDirectionSpeed != 0)
         {
-            velocity.y = baseSpeed * YDirectionSpeed * (yDrag / 100);
+            velocity.y = baseSpeed * YDirectionSpeed;
         }
         bugDrag();
+    }
+
+    private void bugDrag()
+    {
+        if (XDirectionSpeed >= 0)
+        {
+            xDrag--;
+        }
+        if (XDirectionSpeed <= 0)
+        {
+            xDrag++;
+        }
+        if (YDirectionSpeed >= 0)
+        {
+            yDrag--;
+        }
+        if (YDirectionSpeed <= 0)
+        {
+            yDrag++;
+        }
     }
 
     private void rngManipulation()
     {
         if (cooldownUntilRNG > 0)
         {
-            cooldownUntilRNG--;
+            cooldownUntilRNG -= Time.deltaTime;
         }
         else
         {
-            // generate new speed values
-            XDirectionSpeed = Random.Range(minXSpeed, maxXSpeed);
-            YDirectionSpeed = Random.Range(minYSpeed, maxYSpeed);
+            if (Random.Range(1, 100) < chanceToGoToDanger)
+            {
+                dangering = true;
+                if (this.transform.position.x < dangerZone.transform.position.x)
+                {
+                    XDirectionSpeed = Random.Range(-0.5f, maxXSpeed);
+                }
+                else
+                {
+                    XDirectionSpeed = Random.Range(minXSpeed, 0.5f);
+                }
+                if (this.transform.position.y < dangerZone.transform.position.y)
+                {
+                    YDirectionSpeed = Random.Range(0.5f, maxYSpeed);
+                }
+                else
+                {
+                    YDirectionSpeed = Random.Range(minYSpeed, 0.5f);
+                }
+            }
+            else
+            {
+                dangering = false;
+                // generate new speed values
+                XDirectionSpeed = Random.Range(minXSpeed, maxXSpeed);
+                YDirectionSpeed = Random.Range(minYSpeed, maxYSpeed);
+            }
             // generate new cooldown until next rng shift
             cooldownUntilRNG = Random.Range(minCooldownRNG, maxCoolDownRNG);
-            // reset drag
-            xDrag = 100;
-            yDrag = 100;
-        }
-    }
 
-    private void bugDrag()
-    {
-        if (XDirectionSpeed > 0)
-        {
-            xDrag--;
-        }
-        else
-        {
-            xDrag++;
-        }
-        if (YDirectionSpeed > 0)
-        {
-            yDrag--;
-        }
-        else
-        {
-            yDrag++;
+            // reset drag
+            if (XDirectionSpeed >= 0)
+            {
+                xDrag = 25;
+            }
+            else
+            {
+                xDrag = -25;
+            }
+            if (YDirectionSpeed >= 0)
+            {
+                yDrag = 25;
+            }
+            else
+            {
+                yDrag = -25;
+            }
         }
     }
 }

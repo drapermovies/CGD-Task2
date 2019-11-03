@@ -17,10 +17,9 @@ public class BugInitBehaviour : MonoBehaviour
     void Update()
     {
      
-
         transform.LookAt(middle.transform.position, middle.transform.position * -1);
         target_pos = new Vector2(middle.transform.position.x, middle.transform.position.y);
-        if (Vector2.Distance(transform.position, target_pos) > 2)
+        if (Vector2.Distance(transform.position, target_pos) > 2 && (GetComponent<DragScript>().grabbed == false))
         {
             Vector2 pos = Vector2.MoveTowards(transform.position, middle.transform.position, Time.deltaTime * speed);
             transform.position = pos;

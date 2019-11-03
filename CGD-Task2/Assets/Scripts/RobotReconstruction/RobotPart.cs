@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows;
 
 using UnityEngine;
 using UnityEditor; //Used with System.IO for File Reading
@@ -13,6 +14,7 @@ public class RobotPart : MonoBehaviour
     public string obj_name { get; set; }
 
     public bool is_fading { get; set; }
+    public bool is_colliding { get; set; }
 
     public List<string> colours;
 
@@ -25,7 +27,7 @@ public class RobotPart : MonoBehaviour
     /*
      * Called on class creation
      */
-    public RobotPart(string path = "Assets/Sprites/RobotReconstruction/Head")
+    public RobotPart(string path = "Assets/Resources/Sprites/RobotReconstruction/Head")
     {
         //A list of colours for retrieving later
         colours = new List<string>();
@@ -38,6 +40,7 @@ public class RobotPart : MonoBehaviour
     private void Start()
     {
         obj_name = "";
+        is_colliding = true;
 
         GenerateBodyPart();
 
@@ -77,10 +80,17 @@ public class RobotPart : MonoBehaviour
         }
         else if (!render.isVisible && was_seen)
         {
-            if (!EditorApplication.isPaused)
+            if (!Debug.isDebugBuild)
             {
                 Destroy(gameObject);
             }
+            //else
+            //{
+            //    if (!EditorApplication.isPaused)
+            //    {
+            //        Destroy(gameObject);
+            //    }
+            //}
         }
 
         if(is_fading)
@@ -148,6 +158,17 @@ public class RobotPart : MonoBehaviour
         }
     }
 
+    /*
+     * Called when the mouse is released
+     */
+    private void OnMouseUp()
+    {
+        if(is_colliding && transform.parent == null)
+        {
+            is_fading = true;
+        }
+    }
+
     private void ScaleTransform()
     {
         if (transform.localScale == target_scale)
@@ -177,7 +198,7 @@ public class RobotPart : MonoBehaviour
     private Sprite GenerateSprite()
     {
         Sprite sprite = null;
-        string path = "Assets/Sprites/RobotReconstruction/";
+        string path = "Assets/Resources/Sprites/RobotReconstruction/";
 
         switch(part)
         {
@@ -205,7 +226,7 @@ public class RobotPart : MonoBehaviour
 
         uint random_range = 0;
 
-        if(AssetDatabase.IsValidFolder(path))
+        if(Path.GetFullPath(path) != "")
         {
             foreach(string file in Directory.GetFiles(path))
             {
@@ -238,6 +259,8 @@ public class RobotPart : MonoBehaviour
         else
         {
             Debug.LogError("Cannot find " + path);
+            //Forms.MessageBox.Show("Can't find " + path);
+            Application.Quit();
         }
 
         return sprite;

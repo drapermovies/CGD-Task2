@@ -171,7 +171,7 @@ public class RobotRandomiser : MonoBehaviour
         AssignPart("Torso", r_b.colours, ref length);
 
         //Reset these variables because legs have different variables from torso/head
-        r_b = new RobotPart("Assets/Sprites/RobotReconstruction/Legs");
+        r_b = new RobotPart("Assets/Resources/Sprites/RobotReconstruction/Legs");
         length = r_b.colours.Count;
 
         AssignPart("Legs", r_b.colours, ref length);

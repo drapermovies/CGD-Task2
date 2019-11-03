@@ -68,7 +68,7 @@ public class RobotGameUI : MonoBehaviour
     private Sprite GenerateSprite(string part_type)
     {
         Sprite sprite = null;
-        string path = "Assets/Sprites/RobotReconstruction/";
+        string path = "Assets/Resources/Sprites/RobotReconstruction/";
 
         path += part_type + "/";
 

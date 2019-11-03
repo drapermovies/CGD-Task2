@@ -82,4 +82,15 @@ public class Spawner : MonoBehaviour
     {
         was_dragged = true;
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.transform.name == "RobotPart(Clone)")
+        {
+            if (collision.transform.parent == null)
+            {
+                collision.GetComponent<RobotPart>().is_colliding = false;
+            }
+        }
+    }
 }

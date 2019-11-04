@@ -27,6 +27,16 @@ public class DroneMovement : MonoBehaviour
     public float lerpSpeed;
     public float timeStartedLerping;
 
+    public bool controller_left;
+    public bool controller_right;
+
+    public bool moving = false;
+    private float movement_direction = 0.0f;
+    Vector2 old_pos;
+    private float speed = 10.0f;
+
+    Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +45,7 @@ public class DroneMovement : MonoBehaviour
         health = healthMax;
         resetTime = 3;
         //startLerping();
+        anim = gameObject.GetComponent<Animator>();
     }
 
     private void Update()
@@ -45,13 +56,24 @@ public class DroneMovement : MonoBehaviour
             resetTime = 3;
         if (health > 0)
         {
-            if (Input.GetKeyUp(KeyCode.A) && !isLeft)
+            if (!moving)
             {
-                Movement(-moveDir);
+                if ((Input.GetKeyUp(KeyCode.A) || controller_left) && !isLeft)
+                {
+                    Movement();
+                    movement_direction = -moveDir;
+                    moving = true;
+                }
+                else if ((Input.GetKeyUp(KeyCode.D) || controller_right) && !isRight)
+                {
+                    Movement();
+                    movement_direction = moveDir;
+                    moving = true;
+                }
             }
-            else if (Input.GetKeyUp(KeyCode.D) && !isRight)
+            else
             {
-                Movement(moveDir);
+                rotateAndMove();
             }
         }
 
@@ -82,17 +104,17 @@ public class DroneMovement : MonoBehaviour
         }
     }
 
-    public void Movement(float direction)
+    public void Movement()
     {      
 
         // In the centre of the screen
-        if (Input.GetKeyUp(KeyCode.A) && isCentred)
+        if ((Input.GetKeyUp(KeyCode.A) || controller_left) && isCentred)
         {
             isLeft = true;
             isCentred = false;
             isRight = false;
         }
-        else if (Input.GetKeyUp(KeyCode.D) && isCentred)
+        else if ((Input.GetKeyUp(KeyCode.D) || controller_right) && isCentred)
         {
             isLeft = false;
             isCentred = false;
@@ -100,24 +122,41 @@ public class DroneMovement : MonoBehaviour
         }
 
         // Either on the left or right
-        else if (Input.GetKeyUp(KeyCode.A) && !isCentred)
+        else if ((Input.GetKeyUp(KeyCode.A) || controller_left) && !isCentred)
         {
             isLeft = false;
             isCentred = true;
             isRight = false;
         }
-        else if (Input.GetKeyUp(KeyCode.D) && !isCentred)
+        else if ((Input.GetKeyUp(KeyCode.D) || controller_right)&& !isCentred)
         {
             isLeft = false;
             isCentred = true;
             isRight = false;            
         }
-        startLerp = transform.position;
-        endLerp = startLerp + new Vector2(direction,0);
-
+        old_pos = transform.position;
         //transform.position = Lerp(startLerp, endLerp, timeStartedLerping, lerpSpeed);
+    }
 
-        transform.Translate(direction, 0, 0);
+    void rotateAndMove()
+    {
+        //startLerp = transform.position;
+        //endLerp = startLerp + new Vector2(movement_direction, 0);
+        // transform.Translate(movement_direction, 0, 0);
+
+        transform.position = Vector2.MoveTowards(transform.position,
+            old_pos + new Vector2(movement_direction,0), speed * Time.deltaTime);
+        if(movement_direction > 0.0f)
+        {
+            anim.SetBool("move_right", true);
+        }
+        if (Vector2.Distance(transform.position, old_pos + new Vector2(movement_direction, 0)) < 0.1f)
+        {
+            transform.position = old_pos + new Vector2(movement_direction, 0);
+            moving = false;
+            controller_right = false;
+            controller_left = false;
+        }
     }
 
     public void startLerping()
@@ -164,7 +203,7 @@ public class DroneMovement : MonoBehaviour
 
     void RechargeHealth()
     {
-
+        moving = false;
         isLeft = false;
         isCentred = true;
         isRight = false;

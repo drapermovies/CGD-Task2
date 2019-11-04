@@ -11,36 +11,32 @@ public class DroneController : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (drone.health > 0)
+        if (drone.health > 0 && !drone.moving)
         {
             if (right && !drone.isRight)
             {
-                drone.Movement(drone.moveDir);
+                drone.Movement();
                 Debug.Log("Right");
                 if (drone.isCentred)
                 {
-                    drone.isRight = true;
-                    drone.isCentred = false;
+                    drone.controller_right = true;
                 }
                 else if (drone.isLeft)
                 {
-                    drone.isCentred = true;
-                    drone.isLeft = false;
+                    drone.controller_right = true;
                 }
             }
             else if (left && !drone.isLeft)
             {
-                drone.Movement(-drone.moveDir);
+                drone.Movement();
                 Debug.Log("Left");
                 if (drone.isCentred)
                 {
-                    drone.isLeft = true;
-                    drone.isCentred = false;
+                    drone.controller_left = true;
                 }
                 else if (drone.isRight)
                 {
-                    drone.isCentred = true;
-                    drone.isRight = false;
+                    drone.controller_left = true;
                 }
             }
         }

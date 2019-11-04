@@ -16,6 +16,8 @@ public class RobotPart : MonoBehaviour
     public bool is_fading { get; set; }
     public bool is_colliding { get; set; }
 
+    public bool played_audio { get; set; }
+
     private bool was_seen = false;
 
     Vector3 target_scale = Vector3.zero;
@@ -39,6 +41,8 @@ public class RobotPart : MonoBehaviour
         ScaleBoundingBox();
 
         //transform.localScale = new Vector3(0.1f, 0.1f, 0.1f); //Code to make object appear nice when spawning by scaling up the obj
+
+        played_audio = false;
     }
 
     /*
@@ -151,7 +155,6 @@ public class RobotPart : MonoBehaviour
         if(is_colliding && transform.parent == null)
         {
             is_fading = true;
-            Debug.Log("We're fading");
         }
     }
 

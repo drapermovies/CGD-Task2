@@ -86,6 +86,12 @@ public class RobotRandomiser : MonoBehaviour
                             {
                                 //Get "Head" child and set transform position to that
                                 child.transform.position = goal.transform.GetChild(0).position;
+                                
+                                if (!child.played_audio)
+                                {
+                                    child.GetComponent<AudioSource>().Play();
+                                    child.played_audio = true;
+                                }
                             }
 
                             break;
@@ -100,7 +106,12 @@ public class RobotRandomiser : MonoBehaviour
                             {
                                 //Get "Torso" child and set transform position to that
                                 child.transform.position = goal.transform.GetChild(1).position;
-                            }
+                                if (!child.played_audio)
+                                {
+                                    child.GetComponent<AudioSource>().Play();
+                                    child.played_audio = true;
+                                }
+                                }
 
                             break;
                         }
@@ -114,7 +125,12 @@ public class RobotRandomiser : MonoBehaviour
                             {
                                 //Get "Legs" child and set transform position to that
                                 child.transform.position = goal.transform.GetChild(2).position;
-                            }
+                                if (!child.played_audio)
+                                {
+                                    child.GetComponent<AudioSource>().Play();
+                                    child.played_audio = true;
+                                }
+                                }
 
                             break;
                         }

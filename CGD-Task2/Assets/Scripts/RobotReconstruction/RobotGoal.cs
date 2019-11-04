@@ -19,6 +19,5 @@ public class RobotGoal : MonoBehaviour
     private void OnMouseExit()
     {
         in_bound = false;
-        Debug.LogWarning("Mouse is no longer hovering");
     }
 }

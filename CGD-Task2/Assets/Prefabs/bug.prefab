@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1580950493638334803}
   - component: {fileID: 5162071496345570550}
   - component: {fileID: -8840929354733256152}
+  - component: {fileID: -4666141712549980104}
   m_Layer: 0
   m_Name: bug
   m_TagString: Untagged
@@ -109,8 +110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f049aa199befcb4396df9c38b2b175b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disposal: {fileID: 4370234154072303002, guid: 243df4966418158498709a2754c1f84d,
-    type: 3}
   grabbed: 0
 --- !u!61 &5162071496345570550
 BoxCollider2D:
@@ -159,3 +158,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-4666141712549980104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8915405683904194806}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee9acff51d8540f48a361f08c8360a7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseSpeed: 1
+  cooldownUntilRNG: 0.1
+  minCooldownRNG: 3
+  maxCoolDownRNG: 6
+  chanceToGoToDanger: 30
+  debuggerTimer: 0
+  distance: {x: 0, y: 0}
+  angle: 0
+  dangerZone: {fileID: 3754126402438252168, guid: c45ac76bd5d07d44aa9184c51de29d14,
+    type: 3}
+  dangering: 0

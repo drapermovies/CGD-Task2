@@ -151,6 +151,7 @@ public class RobotPart : MonoBehaviour
         if(is_colliding && transform.parent == null)
         {
             is_fading = true;
+            Debug.Log("We're fading");
         }
     }
 

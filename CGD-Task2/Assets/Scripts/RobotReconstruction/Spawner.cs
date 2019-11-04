@@ -42,6 +42,24 @@ public class Spawner : MonoBehaviour
                 Debug.LogError("Failed to spawn robot part");
             }
         }
+
+        BoxCollider2D self_box = GetComponent<BoxCollider2D>();
+
+        foreach (Transform child in FindObjectsOfType<Transform>())
+        {
+            if (child.name == "RobotPart(Clone)")
+            {
+                BoxCollider2D child_box = child.GetComponent<BoxCollider2D>();
+                if (!self_box.bounds.Intersects(child_box.bounds))
+                {
+                    if (child.GetComponent<RobotPart>().is_colliding)
+                    {
+                        string obj_name = child.GetComponent<RobotPart>().obj_name;
+                        child.GetComponent<RobotPart>().is_colliding = false;
+                    }
+                }
+            }
+        }
     }
 
     /*
@@ -83,14 +101,14 @@ public class Spawner : MonoBehaviour
         was_dragged = true;
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if(collision.transform.name == "RobotPart(Clone)")
-        {
-            if (collision.transform.parent == null)
-            {
-                collision.GetComponent<RobotPart>().is_colliding = false;
-            }
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if(collision.transform.name == "RobotPart(Clone)")
+    //    {
+    //        if (collision.transform.parent == null)
+    //        {
+    //            collision.GetComponent<RobotPart>().is_colliding = false;
+    //        }
+    //    }
+    //}
 }

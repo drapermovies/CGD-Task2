@@ -16,23 +16,11 @@ public class RobotPart : MonoBehaviour
     public bool is_fading { get; set; }
     public bool is_colliding { get; set; }
 
-    public List<string> colours;
-
     private bool was_seen = false;
 
     Vector3 target_scale = Vector3.zero;
 
     Vector3 mouse_offset = Vector3.zero;
-
-    /*
-     * Called on class creation
-     */
-    public RobotPart(string path = "Assets/Resources/Sprites/RobotReconstruction/Head")
-    {
-        //A list of colours for retrieving later
-        colours = new List<string>();
-        AssignColours(path);
-    }
 
     /*
      * Called when the object starts being active
@@ -80,17 +68,7 @@ public class RobotPart : MonoBehaviour
         }
         else if (!render.isVisible && was_seen)
         {
-            if (!Debug.isDebugBuild)
-            {
-                Destroy(gameObject);
-            }
-            //else
-            //{
-            //    if (!EditorApplication.isPaused)
-            //    {
-            //        Destroy(gameObject);
-            //    }
-            //}
+            Destroy(gameObject);
         }
 
         if(is_fading)
@@ -136,10 +114,17 @@ public class RobotPart : MonoBehaviour
      */
     private void OnMouseOver()
     {
+        GetComponent<SpriteRenderer>().color = Color.red;
+
         if (Input.GetMouseButton(0))
         {
            transform.parent = null; //Removes the spawner as a parent
         }
+    }
+
+    private void OnMouseExit()
+    {
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     /*
@@ -198,7 +183,7 @@ public class RobotPart : MonoBehaviour
     private Sprite GenerateSprite()
     {
         Sprite sprite = null;
-        string path = "Assets/Resources/Sprites/RobotReconstruction/";
+        string path = "Sprites/RobotReconstruction/";
 
         switch(part)
         {
@@ -226,16 +211,9 @@ public class RobotPart : MonoBehaviour
 
         uint random_range = 0;
 
-        if(Path.GetFullPath(path) != "")
+        foreach(Sprite image in Resources.LoadAll<Sprite>(path))
         {
-            foreach(string file in Directory.GetFiles(path))
-            {
-                if (Path.GetExtension(file) == ".jpg" || 
-                    Path.GetExtension(file) == ".png")
-                {
-                    random_range++;
-                }
-            }
+            random_range++;
         }
 
         //Used to randomly assign a sprite
@@ -244,24 +222,9 @@ public class RobotPart : MonoBehaviour
         obj_name = GetColour(random_number);
 
         path += "/" + obj_name;
-        path += TryExtension(path);
 
         //Load Sprite
-        if(System.IO.File.Exists(path))
-        {
-            byte[] bytes = System.IO.File.ReadAllBytes(path);
-            Texture2D texture = new Texture2D(1, 1);
-            texture.LoadImage(bytes);
-            sprite = Sprite.Create(texture, 
-                                   new Rect(0, 0, texture.width, texture.height), 
-                                   new Vector2(0.5f, 0.5f));
-        }
-        else
-        {
-            Debug.LogError("Cannot find " + path);
-            //Forms.MessageBox.Show("Can't find " + path);
-            Application.Quit();
-        }
+        sprite = Resources.Load<Sprite>(path);
 
         return sprite;
     }
@@ -343,41 +306,22 @@ public class RobotPart : MonoBehaviour
         {
             case RobotPartsEnum.PART_HEAD:
             {
-                box_collider.size = new Vector2(7f, 4.5f);
+                box_collider.size = new Vector2(8f, 6f);
                 break;
             }
             case RobotPartsEnum.PART_TORSO:
             {
-                box_collider.size = new Vector2(6f, 5f);
+                box_collider.size = new Vector2(8f, 6f);
                 break;
             }
             case RobotPartsEnum.PART_LEGS:
             {
-                box_collider.size = new Vector2(3, 3);
+                box_collider.size = new Vector2(4f, 4f);
 
                 //Minor tweaks because the leg's offset for some reason
-                box_collider.offset = new Vector2(0f, 0.1f); 
+                box_collider.offset = new Vector2(0f, -0.35f); 
 
                 break;
-            }
-        }
-    }
-
-    /*
-     * Allows us to get colour names to retrieve in other classes
-     */
-    void AssignColours(string path)
-    {
-        foreach(string file in Directory.GetFiles(path))
-        {
-            int start_point = file.Length - 4;
-            string extension = file.Substring(start_point, 4);
-            int length = file.Length - 4;
-
-            if (extension == ".jpg" || extension == ".png")
-            {
-                string file_name = Path.GetFileNameWithoutExtension(file);
-                colours.Add(file_name);
             }
         }
     }

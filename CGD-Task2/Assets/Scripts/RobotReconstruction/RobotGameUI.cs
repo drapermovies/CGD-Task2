@@ -68,27 +68,14 @@ public class RobotGameUI : MonoBehaviour
     private Sprite GenerateSprite(string part_type)
     {
         Sprite sprite = null;
-        string path = "Assets/Resources/Sprites/RobotReconstruction/";
+        string path = "Sprites/RobotReconstruction/";
 
         path += part_type + "/";
 
         path += FindObjectOfType<RobotRandomiser>().parts[part_type];
 
-        path += TryExtension(path);
-
         //Load Sprite
-        if (System.IO.File.Exists(path))
-        {
-            byte[] bytes = System.IO.File.ReadAllBytes(path);
-            Texture2D texture = new Texture2D(1, 1);
-            texture.LoadImage(bytes);
-            sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height),
-                                    new Vector2(0.5f, 0.5f));
-        }
-        else
-        {
-            Debug.LogError("Cannot find " + path);
-        }
+        sprite = Resources.Load<Sprite>(path);
 
         return sprite;
     }

@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - RobotGameManager
     - RobotGameUI
+    - RobotGoal
     - RobotPart
     - RobotRandomiser
     - Spawner
@@ -38,8 +39,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 49
       Script: {instanceID: 0}
-    - Class: 50
-      Script: {instanceID: 0}
     - Class: 61
       Script: {instanceID: 0}
     - Class: 81
@@ -51,27 +50,29 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9652}
-    - Class: 114
       Script: {instanceID: 9656}
     - Class: 114
-      Script: {instanceID: 9818}
+      Script: {instanceID: 9660}
     - Class: 114
-      Script: {instanceID: 9858}
+      Script: {instanceID: 9822}
     - Class: 114
-      Script: {instanceID: 10256}
+      Script: {instanceID: 9862}
     - Class: 114
-      Script: {instanceID: 10266}
+      Script: {instanceID: 10260}
     - Class: 114
-      Script: {instanceID: 10366}
+      Script: {instanceID: 10270}
     - Class: 114
-      Script: {instanceID: 10802}
+      Script: {instanceID: 10370}
     - Class: 114
-      Script: {instanceID: 11050}
+      Script: {instanceID: 10808}
     - Class: 114
-      Script: {instanceID: 11102}
+      Script: {instanceID: 11056}
     - Class: 114
-      Script: {instanceID: 11474}
+      Script: {instanceID: 11108}
+    - Class: 114
+      Script: {instanceID: 11286}
+    - Class: 114
+      Script: {instanceID: 11480}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -349,7 +350,7 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: 0404a5cbb876e2a6e11a170f11dbee68
+      Hash: c6e79b39619d49d4d6c046df89ca3b47
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RobotPart

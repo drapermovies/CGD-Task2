@@ -163,7 +163,7 @@ public class RobotRandomiser : MonoBehaviour
         parts = new Dictionary<string, string>();
         part_success = new Dictionary<string, bool>();
 
-        RobotPart r_b = new RobotPart();
+        RobotPartBase r_b = new RobotPartBase();
 
         int length = r_b.colours.Count;
 
@@ -171,7 +171,7 @@ public class RobotRandomiser : MonoBehaviour
         AssignPart("Torso", r_b.colours, ref length);
 
         //Reset these variables because legs have different variables from torso/head
-        r_b = new RobotPart("Assets/Resources/Sprites/RobotReconstruction/Legs");
+        r_b = new RobotPartBase("Sprites/RobotReconstruction/Legs");
         length = r_b.colours.Count;
 
         AssignPart("Legs", r_b.colours, ref length);

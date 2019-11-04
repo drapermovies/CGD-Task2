@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 Base path: 'T:/Unity/Editor/Data', plugins path 'T:/Unity/Editor/Data/PlaybackEngines'
+=======
+Base path: 'C:/Users/Joel/Editor/Data', plugins path 'C:/Users/Joel/Editor/Data/PlaybackEngines'
+>>>>>>> RobotGameplay
 Cmd: initializeCompiler

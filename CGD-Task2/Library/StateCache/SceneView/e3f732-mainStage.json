@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":327.3680114746094,"y":119.64305114746094,"z":-2013.09375},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":234.19972229003907,"orthographic":true}
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":-2.690000295639038,"y":1.1599998474121094,"z":-28.97195053100586},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":40.010372161865237,"orthographic":true}
+>>>>>>> RobotGameplay

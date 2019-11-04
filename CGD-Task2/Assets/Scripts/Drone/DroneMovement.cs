@@ -144,18 +144,24 @@ public class DroneMovement : MonoBehaviour
         //endLerp = startLerp + new Vector2(movement_direction, 0);
         // transform.Translate(movement_direction, 0, 0);
 
-        transform.position = Vector2.MoveTowards(transform.position,
-            old_pos + new Vector2(movement_direction,0), speed * Time.deltaTime);
-        if(movement_direction > 0.0f)
+        if (movement_direction > 0.0f)
         {
             anim.SetBool("move_right", true);
         }
+        else if (movement_direction < 0.0f)
+        {
+            anim.SetBool("move_left", true);
+        }
+        transform.position = Vector2.MoveTowards(transform.position,
+            old_pos + new Vector2(movement_direction,0), speed * Time.deltaTime);
         if (Vector2.Distance(transform.position, old_pos + new Vector2(movement_direction, 0)) < 0.1f)
         {
             transform.position = old_pos + new Vector2(movement_direction, 0);
             moving = false;
             controller_right = false;
             controller_left = false;
+            anim.SetBool("move_right", false);
+            anim.SetBool("move_left", false);
         }
     }
 

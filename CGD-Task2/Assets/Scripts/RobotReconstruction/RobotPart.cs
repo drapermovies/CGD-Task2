@@ -20,8 +20,11 @@ public class RobotPart : MonoBehaviour
 
     private bool was_seen = false;
 
-    Vector3 target_scale = Vector3.zero;
+    public float mass;
+    public Rigidbody2D rb;
+    public bool freezeRot;
 
+    Vector3 target_scale = Vector3.zero;
     Vector3 mouse_offset = Vector3.zero;
 
     /*
@@ -31,13 +34,40 @@ public class RobotPart : MonoBehaviour
     {
         obj_name = "";
         is_colliding = true;
+    
+        rb = GetComponent<Rigidbody2D>();
+        rb.mass = mass;
+
 
         GenerateBodyPart();
+
+        if (part == RobotPartsEnum.PART_LEGS)
+        {
+            gameObject.AddComponent(typeof(CircleCollider2D));
+            transform.localScale = new Vector3(4f, 4.4f, 1f);
+            rb.freezeRotation = true;
+            mass = 10f;
+        }
+        else
+        {
+            if(part == RobotPartsEnum.PART_TORSO)
+            {
+                transform.localScale = new Vector3(3f, 3f, 1f);
+
+            }
+            else
+            {
+                // Head Transform
+                transform.localScale = new Vector3(2.7f, 3.8f, 1f);
+            }
+            gameObject.AddComponent(typeof(BoxCollider2D));
+            rb.freezeRotation = true;
+
+        }
 
         target_scale = transform.localScale;
         GetComponent<SpriteRenderer>().sprite = GenerateSprite();
 
-        transform.localScale = new Vector3(0.25f, 0.25f, 1f);
         ScaleBoundingBox();
 
         //transform.localScale = new Vector3(0.1f, 0.1f, 0.1f); //Code to make object appear nice when spawning by scaling up the obj
@@ -94,6 +124,7 @@ public class RobotPart : MonoBehaviour
     /*
      * Moves object along conveyor belt
      */
+     /*
     public void ConveyorMovement(float speed, Vector3 dir)
     {
         Vector3 position = transform.position;
@@ -104,6 +135,7 @@ public class RobotPart : MonoBehaviour
 
         transform.position = position;
     }
+    */
 
     /*
      * Called whenever the mouse is pressed
@@ -148,16 +180,6 @@ public class RobotPart : MonoBehaviour
     }
 
     /*
-     * Called when the mouse is released
-     */
-    private void OnMouseUp()
-    {
-        if(is_colliding && transform.parent == null)
-        {
-            is_fading = true;
-        }
-    }
-
     private void ScaleTransform()
     {
         if (transform.localScale == target_scale)
@@ -168,6 +190,7 @@ public class RobotPart : MonoBehaviour
         local_scale.y *= (8 * Time.deltaTime);
         transform.localScale = local_scale;
     }
+    */
 
     /*
      * Converts the mouse pos from screen coordinates to world coordinates
@@ -306,26 +329,27 @@ public class RobotPart : MonoBehaviour
     private void ScaleBoundingBox()
     {
        BoxCollider2D box_collider = GetComponent<BoxCollider2D>();
-       switch(part)
+       CircleCollider2D circle_collider = GetComponent<CircleCollider2D>();
+
+        switch (part)
         {
             case RobotPartsEnum.PART_HEAD:
             {
-                box_collider.size = new Vector2(8f, 6f);
-                break;
+                    box_collider.offset = new Vector2(0f, -0.77f);
+                    box_collider.size = new Vector2(7f, 2.8f);
+                    break;
             }
             case RobotPartsEnum.PART_TORSO:
             {
-                box_collider.size = new Vector2(8f, 6f);
-                break;
+                    box_collider.offset = new Vector2(0f, -0.25f);
+                    box_collider.size = new Vector2(5.8f, 4f);
+                    break;
             }
             case RobotPartsEnum.PART_LEGS:
-            {
-                box_collider.size = new Vector2(4f, 4f);
-
-                //Minor tweaks because the leg's offset for some reason
-                box_collider.offset = new Vector2(0f, -0.35f); 
-
-                break;
+                {
+                    circle_collider.offset = new Vector2(-0.04f, -0.37f);
+                    circle_collider.radius = 1.25f;
+                    break;
             }
         }
     }

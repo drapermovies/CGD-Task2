@@ -43,4 +43,7 @@ public static class ScoreManager
 
     //calculate total
     public static int CalculateTotalScore()
+    {
+        return DroneScore + DebugScore + RobotScore;
+    }
 }

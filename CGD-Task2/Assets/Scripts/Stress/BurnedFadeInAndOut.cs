@@ -21,7 +21,6 @@ public class BurnedFadeInAndOut : MonoBehaviour
         {
             if (Burned.color.a < 1.0f)
             {
-                Debug.Log("FADE IN");
                 Burned.color = new Color(Burned.color.r, Burned.color.g, Burned.color.b, Burned.color.a + (Time.deltaTime * 2));
             }
         }
@@ -29,7 +28,6 @@ public class BurnedFadeInAndOut : MonoBehaviour
         {
             if (Burned.color.a > 0.0f)
             {
-                Debug.Log("Fade Out");
                 Burned.color = new Color(Burned.color.r, Burned.color.g, Burned.color.b, Burned.color.a - (Time.deltaTime * 2));
             }
         }

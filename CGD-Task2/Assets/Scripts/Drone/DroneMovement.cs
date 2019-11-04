@@ -14,6 +14,8 @@ public class DroneMovement : MonoBehaviour
     public float resetTime;
     private bool isCharging;
 
+    public GameObject explosion;
+
     private Vector3 startPos;
     
     Vector3 mouse_offset = Vector3.zero;
@@ -102,6 +104,13 @@ public class DroneMovement : MonoBehaviour
                 gameObject.GetComponent<SpriteRenderer>().enabled = true;
             }
         }
+        else if(invincibility_timer <= 1.2f)
+        {
+            if (gameObject.GetComponent<SpriteRenderer>().color == Color.red)
+            {
+                gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+        }
     }
 
     public void Movement()
@@ -188,12 +197,15 @@ public class DroneMovement : MonoBehaviour
         {
             if (other.tag == "Obstacle" && !invincible)
             {
+                Instantiate(explosion, gameObject.transform.position, gameObject.transform.rotation);
+                gameObject.GetComponent<SpriteRenderer>().color = Color.red;
                 Destroy(other.gameObject);
                 health--;
                 invincible = true;
                 if(health == 0)
                 {
                     invincibility_timer = 4.5f;
+
                 }
                 if(!StressManager.GetBurnout() && !StressManager.GetResting())
                 {
@@ -214,7 +226,6 @@ public class DroneMovement : MonoBehaviour
         isCentred = true;
         isRight = false;
         transform.position = startPos - new Vector3 (0,moveDir);
-
 
         ResetTime();
     }

@@ -133,8 +133,6 @@ MonoBehaviour:
   angle: 0
   dangerZone: {fileID: 3754126402438252168, guid: c45ac76bd5d07d44aa9184c51de29d14,
     type: 3}
-  boundaries: {fileID: 8513860386006970970, guid: 738c8af8a5fd65047b7ac03eb7becde8,
-    type: 3}
   dangering: 0
 --- !u!54 &7188116867160004964
 Rigidbody:
@@ -150,7 +148,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 120
+  m_Constraints: 72
   m_CollisionDetection: 0
 --- !u!65 &7275599534549893338
 BoxCollider:

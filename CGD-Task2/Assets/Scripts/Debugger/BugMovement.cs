@@ -20,7 +20,6 @@ public class BugMovement : MonoBehaviour
 
     //other
     public GameObject dangerZone;
-    public GameObject boundaries;
 
     //debug
     public bool dangering = false;
@@ -52,14 +51,6 @@ public class BugMovement : MonoBehaviour
 
         //track game timer
         debuggerTimer += Time.deltaTime;
-
-        if (transform.position.x > boundaries.GetComponent<Renderer>().bounds.max.x || 
-            transform.position.x < boundaries.GetComponent<Renderer>().bounds.min.x ||
-            transform.position.y > boundaries.GetComponent<Renderer>().bounds.max.y ||
-            transform.position.y < boundaries.GetComponent<Renderer>().bounds.min.y)
-        {
-            Destroy(this.gameObject);
-        }
     }
 
     private void MovementManager()
@@ -87,9 +78,9 @@ public class BugMovement : MonoBehaviour
                 dangering = false;
             }
             rerollDecidedArea();
-            Vector3 dir = decidedArea - transform.position;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            distance = decidedArea - transform.position;
+            angle = Vector2.Angle(Vector2.up, distance);
+            transform.eulerAngles = new Vector3(0, 0, angle);
 
             // generate new cooldown until next rng shift
             cooldownUntilRNG = Random.Range(minCooldownRNG, maxCoolDownRNG);
@@ -98,7 +89,7 @@ public class BugMovement : MonoBehaviour
 
     private void rerollDecidedArea()
     {
-        decidedArea.x = Random.Range(boundaries.GetComponent<Renderer>().bounds.min.x, boundaries.GetComponent<Renderer>().bounds.max.x);
-        decidedArea.y = Random.Range(boundaries.GetComponent<Renderer>().bounds.min.y, boundaries.GetComponent<Renderer>().bounds.max.y);
+        decidedArea.x = Random.Range(GetComponent<Renderer>().bounds.min.x, GetComponent<Renderer>().bounds.max.x);
+        decidedArea.y = Random.Range(GetComponent<Renderer>().bounds.min.y, GetComponent<Renderer>().bounds.max.y);
     }
 }

@@ -47,6 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   part: 0
+  mass: 0
+  rb: {fileID: 0}
+  freezeRot: 0
 --- !u!212 &4993163901060830348
 SpriteRenderer:
   m_ObjectHideFlags: 0

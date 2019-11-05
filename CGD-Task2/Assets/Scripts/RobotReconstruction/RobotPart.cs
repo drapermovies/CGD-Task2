@@ -38,7 +38,6 @@ public class RobotPart : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.mass = mass;
 
-
         GenerateBodyPart();
 
         if (part == RobotPartsEnum.PART_LEGS)
@@ -122,22 +121,6 @@ public class RobotPart : MonoBehaviour
     }
 
     /*
-     * Moves object along conveyor belt
-     */
-     /*
-    public void ConveyorMovement(float speed, Vector3 dir)
-    {
-        Vector3 position = transform.position;
-        float new_speed = speed * Time.deltaTime;
-
-        position.x += new_speed * dir.x;
-        position.y += new_speed * dir.y;
-
-        transform.position = position;
-    }
-    */
-
-    /*
      * Called whenever the mouse is pressed
      */
     private void OnMouseDown()
@@ -154,7 +137,7 @@ public class RobotPart : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-           transform.parent = null; //Removes the spawner as a parent
+           this.transform.parent = null; //Removes the spawner as a parent
         }
     }
 

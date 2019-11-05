@@ -12,7 +12,7 @@ public class DragScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      
+     
     }
     
     void OnTouchMove(Vector2 new_pos)
@@ -43,6 +43,9 @@ public class DragScript : MonoBehaviour
         if (collision.gameObject.tag == "disposal" && grabbed == true)
         {
             Destroy(this.gameObject);
+            ScoreManager.SetDebugScore(ScoreManager.GetDebugScore() + 5);
+            collision.gameObject.GetComponent<AudioSource>().Play();
+            Debug.Log(ScoreManager.GetDebugScore());
         }
     }
 

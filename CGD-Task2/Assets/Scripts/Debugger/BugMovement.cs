@@ -90,7 +90,7 @@ public class BugMovement : MonoBehaviour
             Vector3 dir = decidedArea - transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
+            GetComponent<AudioSource>().Play();
             // generate new cooldown until next rng shift
             cooldownUntilRNG = Random.Range(minCooldownRNG, maxCoolDownRNG);
         }

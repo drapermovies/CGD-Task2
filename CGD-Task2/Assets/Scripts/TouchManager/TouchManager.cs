@@ -16,14 +16,14 @@ public class TouchManager : MonoBehaviour
 
         for(int i = 0; i < Input.touchCount; i ++)
         {
-            Debug.Log(touches[i].position);
+            //Debug.Log(touches[i].position);
 
             Ray ray = Camera.main.ScreenPointToRay(touches[i].position);
             RaycastHit hit;
 
             if(Physics.Raycast(ray, out hit, touchInputMask))
             {
-                Debug.Log("QUAZ");
+                //Debug.Log("QUAZ");
 
                 GameObject recipient = hit.transform.gameObject;
                 touchList.Add(recipient);
@@ -31,7 +31,7 @@ public class TouchManager : MonoBehaviour
                 if (touches[i].phase == TouchPhase.Began)
                 {
                     recipient.SendMessage("OnTouchDown", touches[i].position, SendMessageOptions.DontRequireReceiver);
-                    Debug.Log("POOP");
+                    //Debug.Log("POOP");
                 }
 
                 if (touches[i].phase == TouchPhase.Ended)

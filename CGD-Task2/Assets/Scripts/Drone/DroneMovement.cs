@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DroneMovement : MonoBehaviour
 {
@@ -38,6 +39,12 @@ public class DroneMovement : MonoBehaviour
     private float speed = 10.0f;
 
     Animator anim;
+
+    private Vector2 touch_pos;
+    bool can_move = true;
+
+    private float score = 0.0f;
+    public Text score_text;
 
     // Start is called before the first frame update
     void Start()
@@ -77,6 +84,9 @@ public class DroneMovement : MonoBehaviour
             {
                 rotateAndMove();
             }
+            
+            score += 10.0f * Time.deltaTime;
+            score_text.text = "Score: " + Mathf.FloorToInt(score); 
         }
 
         if (invincible)
@@ -191,7 +201,7 @@ public class DroneMovement : MonoBehaviour
         //https://www.youtube.com/watch?v=62IFyHUdH9U
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         if (health != 0)
         {
@@ -202,10 +212,11 @@ public class DroneMovement : MonoBehaviour
                 Destroy(other.gameObject);
                 health--;
                 invincible = true;
+                score -= 25;
                 if(health == 0)
                 {
                     invincibility_timer = 4.5f;
-
+                    score -= 25;
                 }
                 if(!StressManager.GetBurnout() && !StressManager.GetResting())
                 {
@@ -215,6 +226,11 @@ public class DroneMovement : MonoBehaviour
             else if (other.tag == "Pickup")
             {
                 Destroy(other.gameObject);
+                if(health <3)
+                {
+                    health++;
+                }
+                score += 20;
             }
         }
     }
@@ -245,20 +261,52 @@ public class DroneMovement : MonoBehaviour
 
     //private void OnMouseDrag()
     //{
-    //    transform.position = GetMouseWorldPos() - mouse_offset;
+    //    Vector2 pos_in = Input.mousePosition;
+
+    //    Debug.Log("new pos:" + pos_in.x);
+    //    Debug.Log("old pos:" + touch_pos.x);
+    //    if (health > 0 && !moving && can_move)
+    //    {
+    //        if (pos_in.x >= touch_pos.x + 60 && !isRight)
+    //        {
+    //            touch_pos.x = pos_in.x;
+    //            controller_right = true;
+    //        }
+    //        else if (pos_in.x <= touch_pos.x - 60 && !isLeft)
+    //        {
+    //            touch_pos.x = pos_in.x;
+    //            controller_left = true;
+    //        }
+    //    }
     //}
-
-    //Vector3 GetMouseWorldPos()
-    //{
-    //    Vector3 mouse_pos = Input.mousePosition;
-
-    //    mouse_pos.z = Camera.main.WorldToScreenPoint(transform.position).z;
-
-    //    return Camera.main.ScreenToWorldPoint(mouse_pos);
-    //}
-
     //private void OnMouseDown()
     //{
-    //    mouse_offset = transform.position - GetMouseWorldPos();
+    //    touch_pos = Input.mousePosition;
+    //}
+    void OnTouchMove(Vector2 pos_in)
+    {
+        if (health > 0 && !moving && can_move)
+        {
+            if (pos_in.x >= touch_pos.x + 60 && !isRight)
+            {
+                touch_pos.x = pos_in.x;
+                controller_right = true;
+                //can_move = false;
+            }
+            else if(pos_in.x <= touch_pos.x - 60 && !isLeft)
+            {
+                touch_pos.x = pos_in.x;
+                controller_left = true;
+               // can_move = false;
+            }
+        }
+    }
+    void OnTouchDown(Vector2 pos_in)
+    {
+        touch_pos = pos_in;
+    }
+    //void OnTouchUp()
+    //{
+    //    can_move = true;
     //}
 }

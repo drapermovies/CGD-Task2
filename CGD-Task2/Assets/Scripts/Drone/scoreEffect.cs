@@ -10,13 +10,13 @@ public class scoreEffect : MonoBehaviour
         Vector3 pos = transform.position;
         pos.z = -1;
         transform.position = pos;
-        if(gameObject.GetComponent<TextMesh>().text == "+20")
+        if(gameObject.GetComponent<TextMesh>().text == "-25" || gameObject.GetComponent<TextMesh>().text == "-50")
         {
-            gameObject.GetComponent<TextMesh>().color = Color.green;
+            gameObject.GetComponent<TextMesh>().color = Color.red;
         }
         else
         {
-            gameObject.GetComponent<TextMesh>().color = Color.red;
+            gameObject.GetComponent<TextMesh>().color = Color.green;
         }
     }
 

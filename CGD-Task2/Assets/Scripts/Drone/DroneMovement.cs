@@ -88,8 +88,12 @@ public class DroneMovement : MonoBehaviour
             }
             
             score += 10.0f * Time.deltaTime;
-            score_text.text = "Score: " + Mathf.FloorToInt(score); 
         }
+        if(score < 0.0f)
+        {
+            score = 0.0f;
+        }
+        score_text.text = "Score: " + Mathf.FloorToInt(score);
 
         if (invincible)
         {

@@ -201,4 +201,15 @@ public class RobotRandomiser : MonoBehaviour
 
         FindObjectOfType<RobotGameUI>().UpdateUI();
     }
+
+    public bool GetSuccess(string key)
+    {
+        return part_success[key];
+    }
+
+    public string GetColour(string key)
+    {
+        Debug.Log(parts[key]);
+        return parts[key];
+    }
 }

@@ -22,7 +22,6 @@ public class RobotPart : MonoBehaviour
 
     public float mass;
     public Rigidbody2D rb;
-    public bool freezeRot;
 
     Vector3 target_scale = Vector3.zero;
     Vector3 mouse_offset = Vector3.zero;
@@ -45,7 +44,7 @@ public class RobotPart : MonoBehaviour
             gameObject.AddComponent(typeof(CircleCollider2D));
             transform.localScale = new Vector3(4f, 4.4f, 1f);
             rb.freezeRotation = true;
-            mass = 10f;
+            mass = 0.1f;
         }
         else
         {
@@ -64,8 +63,21 @@ public class RobotPart : MonoBehaviour
 
         }
 
+        string part_string = PartString();
+
         target_scale = transform.localScale;
         GetComponent<SpriteRenderer>().sprite = GenerateSprite();
+
+        if (FindObjectOfType<RobotRandomiser>().GetSuccess(part_string))
+        {
+            if (FindObjectOfType<RobotRandomiser>().GetColour(part_string)
+                == obj_name)
+            {
+                FindObjectOfType<Spawner>().SpawnBodyPart();
+                Destroy(gameObject);
+                return;
+            }
+        }
 
         ScaleBoundingBox();
 
@@ -354,5 +366,22 @@ public class RobotPart : MonoBehaviour
 
         transform.GetComponent<SpriteRenderer>().color = Color.Lerp(sprite_colour, 
                                                 change_colour, 5f * Time.deltaTime);
+    }
+
+    private string PartString()
+    {
+        if(part == RobotPartsEnum.PART_HEAD)
+        {
+            return "Head";
+        }
+        else if(part == RobotPartsEnum.PART_TORSO)
+        {
+            return "Torso";
+        }
+        else if(part == RobotPartsEnum.PART_LEGS)
+        {
+            return "Legs";
+        }
+        return null;
     }
 }

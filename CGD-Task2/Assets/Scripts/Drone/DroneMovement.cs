@@ -46,6 +46,8 @@ public class DroneMovement : MonoBehaviour
     private float score = 0.0f;
     public Text score_text;
 
+    public GameObject score_effect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -212,11 +214,16 @@ public class DroneMovement : MonoBehaviour
                 Destroy(other.gameObject);
                 health--;
                 invincible = true;
-                score -= 25;
-                if(health == 0)
+                if (health == 0)
                 {
                     invincibility_timer = 4.5f;
+                    score -= 50;
+                    Instantiate(score_effect, gameObject.transform.position, gameObject.transform.rotation).GetComponent<TextMesh>().text = "-50";
+                }
+                else
+                {
                     score -= 25;
+                    Instantiate(score_effect, gameObject.transform.position, gameObject.transform.rotation).GetComponent<TextMesh>().text = "-25";
                 }
                 if(!StressManager.GetBurnout() && !StressManager.GetResting())
                 {
@@ -231,6 +238,7 @@ public class DroneMovement : MonoBehaviour
                     health++;
                 }
                 score += 20;
+                Instantiate(score_effect, gameObject.transform.position, gameObject.transform.rotation).GetComponent<TextMesh>().text = "+20";
                 GetComponent<Spawner>().SpawnBodyPart();
             }
         }

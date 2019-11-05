@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":1.7761987447738648,"y":0.5777283310890198,"z":-19.350326538085939},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":15.380400657653809,"orthographic":true}
 =======
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":-0.7597593665122986,"y":0.10897114872932434,"z":-1.412109375},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":13.389714241027832,"orthographic":true}
@@ -14,4 +15,10 @@
 >>>>>>> DebiggerCombined
 =======
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":379.9418029785156,"y":92.6407241821289,"z":-2004.7716064453125},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":150.80767822265626,"orthographic":true}
+>>>>>>> RobotBuilder
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":327.3680114746094,"y":119.64305114746094,"z":-2013.09375},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":234.19972229003907,"orthographic":true}
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":-2.690000295639038,"y":1.1599998474121094,"z":-28.97195053100586},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":40.010372161865237,"orthographic":true}
+>>>>>>> RobotGameplay
 >>>>>>> RobotBuilder

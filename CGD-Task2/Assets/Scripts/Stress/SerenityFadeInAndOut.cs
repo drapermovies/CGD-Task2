@@ -20,8 +20,7 @@ public class SerenityFadeInAndOut : MonoBehaviour
         if (StressManager.GetResting())
         {
             if(Serenity.color.a < 1.0f)
-            {
-                Debug.Log("FADE IN");
+            { 
                 Serenity.color = new Color(Serenity.color.r, Serenity.color.g, Serenity.color.b, Serenity.color.a + (Time.deltaTime * 2));
             }
         }
@@ -29,7 +28,6 @@ public class SerenityFadeInAndOut : MonoBehaviour
         {
             if(Serenity.color.a > 0.0f)
             {
-                Debug.Log("Fade Out");
                 Serenity.color = new Color(Serenity.color.r, Serenity.color.g, Serenity.color.b, Serenity.color.a - (Time.deltaTime * 2));
             }
         }

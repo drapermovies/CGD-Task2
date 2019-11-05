@@ -548,11 +548,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8553272948180641395, guid: 8596e8e01dc5b4744b14031cfef499b4,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6390628478652848705, guid: 8596e8e01dc5b4744b14031cfef499b4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -563,6 +558,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8553272948180641395, guid: 8596e8e01dc5b4744b14031cfef499b4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 911173250, guid: 8596e8e01dc5b4744b14031cfef499b4, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8596e8e01dc5b4744b14031cfef499b4, type: 3}
 --- !u!1001 &8553272946697276706
@@ -572,11 +576,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8553272948180641391, guid: 8596e8e01dc5b4744b14031cfef499b4,
-        type: 3}
-      propertyPath: m_Name
-      value: Conveyor-Belt-Base
-      objectReference: {fileID: 0}
     - target: {fileID: 8553272948180641395, guid: 8596e8e01dc5b4744b14031cfef499b4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -616,6 +615,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8553272948180641391, guid: 8596e8e01dc5b4744b14031cfef499b4,
+        type: 3}
+      propertyPath: m_Name
+      value: Conveyor-Belt-Base
       objectReference: {fileID: 0}
     - target: {fileID: 4375463497873273710, guid: 6cda9deac0defcc4a9f43ec9ef806be5,
         type: 3}

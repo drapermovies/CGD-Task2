@@ -476,6 +476,8 @@ MonoBehaviour:
   controller_right: 0
   moving: 0
   score_text: {fileID: 697895428}
+  score_effect: {fileID: 4719911164791328329, guid: fbdfc0d498c981f47828f36837d07023,
+    type: 3}
 --- !u!95 &450816107
 Animator:
   serializedVersion: 3
@@ -1558,7 +1560,7 @@ PrefabInstance:
     - target: {fileID: 3061710405182680720, guid: 6cda9deac0defcc4a9f43ec9ef806be5,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -65.2
+      value: -65.20001
       objectReference: {fileID: 0}
     - target: {fileID: 3061710405182680720, guid: 6cda9deac0defcc4a9f43ec9ef806be5,
         type: 3}

@@ -1,2 +1,11 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+Base path: 'D:/Unity/Editor/Data', plugins path 'D:/Unity/Editor/Data/PlaybackEngines'
+=======
+Base path: 'E:/Developer programs/New folder/Unity/Editor/Data', plugins path 'E:/Developer programs/New folder/Unity/Editor/Data/PlaybackEngines'
+>>>>>>> DroneRunner
+Cmd: initializeCompiler
+=======
 Base path: 'C:/Program Files/Unity/Editor/Data', plugins path 'C:/Program Files/Unity/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
+>>>>>>> RobotBuilderSAFE

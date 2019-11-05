@@ -231,6 +231,7 @@ public class DroneMovement : MonoBehaviour
                     health++;
                 }
                 score += 20;
+                GetComponent<Spawner>().SpawnBodyPart();
             }
         }
     }

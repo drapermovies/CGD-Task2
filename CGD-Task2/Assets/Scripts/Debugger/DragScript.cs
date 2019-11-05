@@ -24,8 +24,8 @@ public class DragScript : MonoBehaviour
 
     private void OnTouchDown(Vector2 new_pos)
     {
-        touch_pos = new_pos;
-        touch_pos = Camera.main.ScreenToWorldPoint(touch_pos);
+            touch_pos = new_pos;
+            touch_pos = Camera.main.ScreenToWorldPoint(touch_pos);
             transform.localPosition = new Vector2(touch_pos.x - clickdown_pos.x, touch_pos.y - clickdown_pos.y);
             clickdown_pos.x = touch_pos.x - transform.localPosition.x;
             clickdown_pos.y = touch_pos.y - transform.localPosition.y;
@@ -39,6 +39,7 @@ public class DragScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
+        Debug.Log("Hit bin");
         if (collision.gameObject.tag == "disposal" && grabbed == true)
         {
             Destroy(this.gameObject);

@@ -47,6 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   part: 0
+  mass: 0
+  rb: {fileID: 0}
+  freezeRot: 0
 --- !u!212 &4993163901060830348
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -211,5 +214,5 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0

@@ -86,7 +86,7 @@ public class RobotRandomiser : MonoBehaviour
                             {
                                 //Get "Head" child and set transform position to that
                                 child.transform.position = goal.transform.GetChild(0).position;
-                                
+
                                 if (!child.played_audio)
                                 {
                                     child.GetComponent<AudioSource>().Play();
@@ -130,11 +130,13 @@ public class RobotRandomiser : MonoBehaviour
                                     child.GetComponent<AudioSource>().Play();
                                     child.played_audio = true;
                                 }
-                                }
-
+                            }
                             break;
                         }
                     }
+                    //Removes any excess speed to prevent 'flying'
+                    child.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                    child.GetComponent<Rigidbody2D>().simulated = false;
                 }
             }
         }

@@ -135,8 +135,7 @@ public class RobotRandomiser : MonoBehaviour
                         }
                     }
                     //Removes any excess speed to prevent 'flying'
-                    child.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                    child.GetComponent<Rigidbody2D>().simulated = false;
+                    child.GetComponent<Rigidbody>().velocity = Vector2.zero;
                 }
             }
         }

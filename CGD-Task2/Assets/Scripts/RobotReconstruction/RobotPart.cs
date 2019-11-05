@@ -20,8 +20,7 @@ public class RobotPart : MonoBehaviour
 
     private bool was_seen = false;
 
-    public float mass;
-    public Rigidbody2D rb;
+    public Rigidbody rb;
     public bool freezeRot;
 
     Vector3 target_scale = Vector3.zero;
@@ -35,17 +34,15 @@ public class RobotPart : MonoBehaviour
         obj_name = "";
         is_colliding = true;
     
-        rb = GetComponent<Rigidbody2D>();
-        rb.mass = mass;
+        rb = GetComponent<Rigidbody>();
 
         GenerateBodyPart();
 
         if (part == RobotPartsEnum.PART_LEGS)
         {
-            gameObject.AddComponent(typeof(CircleCollider2D));
+            gameObject.AddComponent(typeof(SphereCollider));
             transform.localScale = new Vector3(4f, 4.4f, 1f);
             rb.freezeRotation = true;
-            mass = 10f;
         }
         else
         {
@@ -59,7 +56,7 @@ public class RobotPart : MonoBehaviour
                 // Head Transform
                 transform.localScale = new Vector3(2.7f, 3.8f, 1f);
             }
-            gameObject.AddComponent(typeof(BoxCollider2D));
+            gameObject.AddComponent(typeof(BoxCollider));
             rb.freezeRotation = true;
 
         }
@@ -311,27 +308,24 @@ public class RobotPart : MonoBehaviour
      */
     private void ScaleBoundingBox()
     {
-       BoxCollider2D box_collider = GetComponent<BoxCollider2D>();
-       CircleCollider2D circle_collider = GetComponent<CircleCollider2D>();
+       BoxCollider box_collider = GetComponent<BoxCollider>();
+       SphereCollider Sphere_collider = GetComponent<SphereCollider>();
 
         switch (part)
         {
             case RobotPartsEnum.PART_HEAD:
             {
-                    box_collider.offset = new Vector2(0f, -0.77f);
                     box_collider.size = new Vector2(7f, 2.8f);
                     break;
             }
             case RobotPartsEnum.PART_TORSO:
             {
-                    box_collider.offset = new Vector2(0f, -0.25f);
                     box_collider.size = new Vector2(5.8f, 4f);
                     break;
             }
             case RobotPartsEnum.PART_LEGS:
                 {
-                    circle_collider.offset = new Vector2(-0.04f, -0.37f);
-                    circle_collider.radius = 1.25f;
+                    Sphere_collider.radius = 1.25f;
                     break;
             }
         }

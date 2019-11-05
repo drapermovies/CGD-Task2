@@ -20,6 +20,7 @@ public class BugMovement : MonoBehaviour
 
     //other
     public GameObject dangerZone;
+    public GameObject boundaries;
 
     //debug
     public bool dangering = false;
@@ -51,6 +52,14 @@ public class BugMovement : MonoBehaviour
 
         //track game timer
         debuggerTimer += Time.deltaTime;
+
+        if (transform.position.x > boundaries.GetComponent<Renderer>().bounds.max.x || 
+            transform.position.x < boundaries.GetComponent<Renderer>().bounds.min.x ||
+            transform.position.y > boundaries.GetComponent<Renderer>().bounds.max.y ||
+            transform.position.y < boundaries.GetComponent<Renderer>().bounds.min.y)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void MovementManager()
@@ -89,7 +98,7 @@ public class BugMovement : MonoBehaviour
 
     private void rerollDecidedArea()
     {
-        decidedArea.x = Random.Range(GetComponent<Renderer>().bounds.min.x, GetComponent<Renderer>().bounds.max.x);
-        decidedArea.y = Random.Range(GetComponent<Renderer>().bounds.min.y, GetComponent<Renderer>().bounds.max.y);
+        decidedArea.x = Random.Range(boundaries.GetComponent<Renderer>().bounds.min.x, boundaries.GetComponent<Renderer>().bounds.max.x);
+        decidedArea.y = Random.Range(boundaries.GetComponent<Renderer>().bounds.min.y, boundaries.GetComponent<Renderer>().bounds.max.y);
     }
 }

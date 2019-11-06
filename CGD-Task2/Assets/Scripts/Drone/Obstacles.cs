@@ -5,10 +5,11 @@ using UnityEngine;
 public class Obstacles : MonoBehaviour
 {
     public float speed;
+    public float max_speed;
     // Start is called before the first frame update
     void Start()
     {
-        speed = 5.0f;
+        max_speed = speed;
     }
 
     // Update is called once per frame
@@ -16,11 +17,11 @@ public class Obstacles : MonoBehaviour
     {
         if(StressManager.GetBurnout())
         {
-            speed = 7.5f;
+            speed = max_speed * 1.6f;
         }
         else
         {
-            speed = 5.0f;
+            speed = max_speed;
         }
         //move downwards and delete if reach the bottom
         Vector3 pos = gameObject.transform.position;

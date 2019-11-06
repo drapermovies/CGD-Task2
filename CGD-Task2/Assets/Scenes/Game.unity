@@ -2057,6 +2057,7 @@ MonoBehaviour:
   prefabs:
   - {fileID: 1882233794929042403, guid: fa27c428671f837488a2a3aa4c2c4e02, type: 3}
   - {fileID: 1317634365104337512, guid: 384d7ca323e8ac4498fe6151f0eca1fb, type: 3}
+  new_max_timer: 1.15
 --- !u!1001 &1944779281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2242,6 +2243,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5582479978528535283, guid: b32634cbe1f660c4499c8a4e37f7e3a3,
+        type: 3}
+      propertyPath: maxStress
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5582479978296031498, guid: b32634cbe1f660c4499c8a4e37f7e3a3, type: 3}

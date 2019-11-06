@@ -18,6 +18,10 @@ public static class StressManager
     public static void DecreaseStressLevel(float decreaseValue)
     {
         StressLevel -= decreaseValue;
+        if(StressLevel <0.0f)
+        {
+            StressLevel = 0.0f;
+        }
     }
 
     public static float GetStressLevel()

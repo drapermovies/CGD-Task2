@@ -7,7 +7,8 @@ public class DroneSpawner : MonoBehaviour
     public GameObject[] spawners;
     public GameObject[] prefabs;
 
-    private float max_timer = 1.25f;
+    private float max_timer = 1.4f;
+    public float new_max_timer = 1.4f;
     private float timer;
 
     private int pickup_counter;
@@ -27,11 +28,11 @@ public class DroneSpawner : MonoBehaviour
     {
         if (StressManager.GetBurnout())
         {
-            max_timer = 0.75f;
+            max_timer = (new_max_timer * 0.6f) + 0.125f;
         }
         else
         {
-            max_timer = 1.25f;
+            max_timer = new_max_timer;
         }
         //when timer reaches 0 spawn an instance of obstacle or item at randomised spawner pos;
         timer -= Time.deltaTime;

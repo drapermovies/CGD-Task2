@@ -9,6 +9,8 @@ public class StartGameScript : MonoBehaviour
     private void OnMouseUp()
     {
         Debug.Log("START GAME");
-        Loader.Load(Loader.SceneID.DroneRunner); //TEMP need to change to gameplay scene
+        ScoreManager.ResetScores();
+        Loader.SetGameFin(false);
+        Loader.Load(Loader.SceneID.Game); //TEMP need to change to gameplay scene
     }
 }

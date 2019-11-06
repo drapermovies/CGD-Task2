@@ -1,0 +1,25 @@
+<<<<<<< HEAD:CGD-Task2/Assets/Scripts/Drone/Doesn't work/Swipe.cs.meta
+fileFormatVersion: 2
+guid: 2ac17b8c92086904b9880af48798c904
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+=======
+fileFormatVersion: 2
+guid: 28669e4aa09773647a980915d68714fb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/Utility.cs.meta

@@ -1663,6 +1663,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: RobotUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3061710405182680720, guid: 6cda9deac0defcc4a9f43ec9ef806be5,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5302615
+      objectReference: {fileID: 0}
+    - target: {fileID: 3061710405182680720, guid: 6cda9deac0defcc4a9f43ec9ef806be5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5302615
+      objectReference: {fileID: 0}
+    - target: {fileID: 3061710405182680720, guid: 6cda9deac0defcc4a9f43ec9ef806be5,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5302615
+      objectReference: {fileID: 0}
+    - target: {fileID: 3061710405182680720, guid: 6cda9deac0defcc4a9f43ec9ef806be5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -65.20001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3061710405182680720, guid: 6cda9deac0defcc4a9f43ec9ef806be5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -63.19995
+      objectReference: {fileID: 0}
     - target: {fileID: 4375463497873273710, guid: 6cda9deac0defcc4a9f43ec9ef806be5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1767,31 +1792,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3061710405182680720, guid: 6cda9deac0defcc4a9f43ec9ef806be5,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5302615
-      objectReference: {fileID: 0}
-    - target: {fileID: 3061710405182680720, guid: 6cda9deac0defcc4a9f43ec9ef806be5,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5302615
-      objectReference: {fileID: 0}
-    - target: {fileID: 3061710405182680720, guid: 6cda9deac0defcc4a9f43ec9ef806be5,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5302615
-      objectReference: {fileID: 0}
-    - target: {fileID: 3061710405182680720, guid: 6cda9deac0defcc4a9f43ec9ef806be5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -65.20001
-      objectReference: {fileID: 0}
-    - target: {fileID: 3061710405182680720, guid: 6cda9deac0defcc4a9f43ec9ef806be5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -63.19995
       objectReference: {fileID: 0}
     - target: {fileID: 6195289446001185360, guid: 6cda9deac0defcc4a9f43ec9ef806be5,
         type: 3}
@@ -2382,9 +2382,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3c81a735b706f6241ab8e7b8ae2ec148, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1675ee562d4c8af488d462dae3d8a3aa, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class StartGameScript : MonoBehaviour
 {
-    private void OnMouseUp()
+    private void OnTouchUp()
     {
         Debug.Log("START GAME");
         ScoreManager.ResetScores();

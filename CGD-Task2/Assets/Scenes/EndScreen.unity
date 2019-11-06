@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 792322722}
   - component: {fileID: 792322721}
   - component: {fileID: 792322724}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: REPLAY
   m_TagString: Untagged
   m_Icon: {fileID: 0}

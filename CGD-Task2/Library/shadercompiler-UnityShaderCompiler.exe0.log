@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Base path: 'E:/Developer programs/New folder/Unity/Editor/Data', plugins path 'E:/Developer programs/New folder/Unity/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
 Cmd: preprocess
@@ -22,3 +23,7 @@ Cmd: preprocess
   insize=4297 outsize=3592 ok=1
 Cmd: preprocess
   insize=7631 outsize=2417 ok=1
+=======
+Base path: 'D:/Program Files/Unity/Editor/Data', plugins path 'D:/Program Files/Unity/Editor/Data/PlaybackEngines'
+Cmd: initializeCompiler
+>>>>>>> DroneRunner

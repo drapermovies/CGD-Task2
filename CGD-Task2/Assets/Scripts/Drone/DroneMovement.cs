@@ -90,7 +90,6 @@ public class DroneMovement : MonoBehaviour
             score += 7.5f * Time.deltaTime;
             score_text.text = "Score: " + Mathf.FloorToInt(score);
             int scoreBOI = Mathf.FloorToInt(score);
-
             ScoreManager.SetDroneScore(scoreBOI);
         }
         if(score < 0.0f)
@@ -221,6 +220,7 @@ public class DroneMovement : MonoBehaviour
         {
             if (other.tag == "Obstacle" && !invincible)
             {
+                gameObject.GetComponent<AudioSource>().Play();
                 Instantiate(explosion, gameObject.transform.position, gameObject.transform.rotation);
                 gameObject.GetComponent<SpriteRenderer>().color = Color.red;
                 Destroy(other.gameObject);

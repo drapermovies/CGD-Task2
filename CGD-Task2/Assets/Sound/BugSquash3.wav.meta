@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 69f0a31a7ef96744c9194711af98a33f
+=======
 guid: df08ba17e0497e942bbcd830ce88a5b5
+>>>>>>> EndScreen
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6

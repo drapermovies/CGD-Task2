@@ -15,12 +15,4 @@ public class RobotGameManager : MonoBehaviour
     {
         return score.ToString() + " points";
     }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
-    }
 }

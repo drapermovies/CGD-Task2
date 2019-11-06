@@ -20,11 +20,12 @@ public class RobotPart : MonoBehaviour
 
     private bool was_seen = false;
 
+    public float mass;
     public Rigidbody rb;
-    public bool freezeRot;
 
     Vector3 target_scale = Vector3.zero;
-    Vector3 mouse_offset = Vector3.zero;
+    Vector2 mouse_offset = Vector2.zero;
+    Vector2 touch_pos = Vector2.zero;
 
     /*
      * Called when the object starts being active
@@ -34,15 +35,18 @@ public class RobotPart : MonoBehaviour
         obj_name = "";
         is_colliding = true;
     
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
+        //rb.mass = mass;
 
         GenerateBodyPart();
 
         if (part == RobotPartsEnum.PART_LEGS)
         {
-            gameObject.AddComponent(typeof(SphereCollider));
+            gameObject.AddComponent(typeof(BoxCollider));
             transform.localScale = new Vector3(4f, 4.4f, 1f);
-            rb.freezeRotation = true;
+            //rb.freezeRotation = true;
+            GetComponent<BoxCollider>().size = new Vector3(4, 4, 1);
+            mass = 0.1f;
         }
         else
         {
@@ -57,12 +61,25 @@ public class RobotPart : MonoBehaviour
                 transform.localScale = new Vector3(2.7f, 3.8f, 1f);
             }
             gameObject.AddComponent(typeof(BoxCollider));
-            rb.freezeRotation = true;
+            //rb.freezeRotation = true;
 
         }
 
+        string part_string = PartString();
+
         target_scale = transform.localScale;
         GetComponent<SpriteRenderer>().sprite = GenerateSprite();
+
+        if (FindObjectOfType<RobotRandomiser>().GetSuccess(part_string))
+        {
+            if (FindObjectOfType<RobotRandomiser>().GetColour(part_string)
+                == obj_name)
+            {
+                FindObjectOfType<Spawner>().SpawnBodyPart();
+                Destroy(gameObject);
+                return;
+            }
+        }
 
         ScaleBoundingBox();
 
@@ -118,44 +135,83 @@ public class RobotPart : MonoBehaviour
     }
 
     /*
-     * Called whenever the mouse is pressed
+     * Moves object along conveyor belt
      */
-    private void OnMouseDown()
+    public void ConveyorMovement(float speed, Vector3 dir)
     {
-        mouse_offset = transform.position - GetMouseWorldPos();
+        Vector3 position = transform.position;
+
+        float new_speed = speed * Time.deltaTime;
+        position.x += new_speed * dir.x;
+        position.y += new_speed * dir.y;
+
+        transform.position = position;
     }
+
 
     /*
-     * Called when the mouse hovers over an object
+     * Called whenever the mouse is pressed
      */
-    private void OnMouseOver()
+    private void OnTouchDown(Vector2 pos)
     {
-        GetComponent<SpriteRenderer>().color = Color.red;
-
-        if (Input.GetMouseButton(0))
+        if (StressManager.GetBurnout())
         {
-           this.transform.parent = null; //Removes the spawner as a parent
+            //return;
         }
-    }
 
-    private void OnMouseExit()
-    {
-        GetComponent<SpriteRenderer>().color = Color.white;
+        Vector2 temp_mouse = Vector2.zero;
+        temp_mouse.x = touch_pos.x - transform.position.x;
+        temp_mouse.y = touch_pos.y - transform.position.y;
+        mouse_offset = temp_mouse;
+
+        touch_pos = pos;
+
+        this.transform.parent = null; //Removes the spawner as a parent
     }
 
     /*
      * Called when the mouse is dragged
      */
-    private void OnMouseDrag()
+    private void OnTouchMove(Vector2 pos)
     {
-        Transform obj = FindObjectOfType<RobotGoal>().transform;
-
-        foreach(Transform child in obj.GetComponentInChildren<Transform>())
+        if(StressManager.GetBurnout())
         {
-            if(child.transform.position != transform.position)
+            //return;
+        }
+        Transform obj = FindObjectOfType<RobotGoal>().transform;
+        Vector2 new_position = Vector2.zero;
+
+        touch_pos = pos;
+
+        transform.position = GetTouchWorldPos();
+
+        if(transform.parent)
+        {
+            transform.parent = null;
+        }
+    }
+
+    void OnTouchUp(Vector2 pos)
+    {
+        if(!is_colliding)
+        {
+            if (!played_audio)
             {
-                transform.position = GetMouseWorldPos() - mouse_offset;
+                transform.GetChild(0).GetComponent<AudioSource>().Play();
+                FindObjectOfType<RobotGameManager>().ChangeScore(-5);
+                played_audio = true;
             }
+
+            RobotRandomiser randomiser = FindObjectOfType<RobotRandomiser>();
+            if (!randomiser.GetSuccess(PartString()))
+            {
+                is_fading = true;
+            }
+            else if(randomiser.GetColour(PartString()) != obj_name)
+            {
+                is_fading = true;
+            }
+
         }
     }
 
@@ -175,16 +231,10 @@ public class RobotPart : MonoBehaviour
     /*
      * Converts the mouse pos from screen coordinates to world coordinates
      */
-    Vector3 GetMouseWorldPos()
+    public Vector2 GetTouchWorldPos()
     {
-        Vector3 mouse_pos = Input.mousePosition;
-
-        //This line converts object z position to screen space
-        //Changed back to world space in the return statement
-        mouse_pos.z = Camera.main.WorldToScreenPoint(transform.position).z;
-
         //Returns mouse pos and modified z pos converted to world space
-        return Camera.main.ScreenToWorldPoint(mouse_pos);
+        return Camera.main.ScreenToWorldPoint(touch_pos);
     }
 
     private Sprite GenerateSprite()
@@ -309,25 +359,28 @@ public class RobotPart : MonoBehaviour
     private void ScaleBoundingBox()
     {
        BoxCollider box_collider = GetComponent<BoxCollider>();
-       SphereCollider Sphere_collider = GetComponent<SphereCollider>();
+       SphereCollider circle_collider = GetComponent<SphereCollider>();
 
         switch (part)
         {
             case RobotPartsEnum.PART_HEAD:
             {
+                    box_collider.center = new Vector2(0f, -0.77f);
                     box_collider.size = new Vector2(7f, 2.8f);
                     break;
             }
             case RobotPartsEnum.PART_TORSO:
             {
+                    box_collider.center = new Vector2(0f, -0.25f);
                     box_collider.size = new Vector2(5.8f, 4f);
                     break;
             }
-            case RobotPartsEnum.PART_LEGS:
-                {
-                    Sphere_collider.radius = 1.25f;
-                    break;
-            }
+            //case RobotPartsEnum.PART_LEGS:
+            //    {
+            //        circle_collider.center = new Vector2(-0.04f, -0.37f);
+            //        circle_collider.radius = 1.25f;
+            //        break;
+            //}
         }
     }
 
@@ -348,5 +401,22 @@ public class RobotPart : MonoBehaviour
 
         transform.GetComponent<SpriteRenderer>().color = Color.Lerp(sprite_colour, 
                                                 change_colour, 5f * Time.deltaTime);
+    }
+
+    private string PartString()
+    {
+        if(part == RobotPartsEnum.PART_HEAD)
+        {
+            return "Head";
+        }
+        else if(part == RobotPartsEnum.PART_TORSO)
+        {
+            return "Torso";
+        }
+        else if(part == RobotPartsEnum.PART_LEGS)
+        {
+            return "Legs";
+        }
+        return null;
     }
 }

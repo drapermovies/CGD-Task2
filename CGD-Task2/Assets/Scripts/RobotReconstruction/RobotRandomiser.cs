@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RobotRandomiser : MonoBehaviour
 {
+    public bool completed_robot { get; set; }
+
     public Dictionary<string, string> parts;
 
     private Dictionary<string, bool> part_success;
@@ -14,6 +16,7 @@ public class RobotRandomiser : MonoBehaviour
     private void Start()
     {
         GenerateRobot();
+        completed_robot = false;
     }
 
     /*
@@ -30,32 +33,19 @@ public class RobotRandomiser : MonoBehaviour
             if(result)
             {
                 successes++;
+                Debug.Log("Succeses");
             }
         }
 
         if(successes == 3)
         {
+            parts.Clear();
+            part_success.Clear();
+
             GenerateRobot();
             GetComponent<RobotGameManager>().ChangeScore(20);
 
-            foreach(RobotPart part in FindObjectsOfType<RobotPart>())
-            {
-                if(part.transform.parent == null)
-                {
-                    RobotGoal goal = FindObjectOfType<RobotGoal>();
-
-                    if (goal != null)
-                    {
-                        foreach(Transform child in goal.transform.GetComponentInChildren<Transform>())
-                        {
-                            if(part.transform.position == child.transform.position)
-                            {
-                                part.is_fading = true;
-                            }
-                        }
-                    }
-                }
-            }
+            completed_robot = true;
         }
     }
 
@@ -74,6 +64,7 @@ public class RobotRandomiser : MonoBehaviour
                 //Check we're in the goal zone
                 if (goal.in_bound)
                 {
+                    //child.transform.localScale = new Vector3(1, 1, 1);
                     switch (child.part)
                     {
                         case RobotPartsEnum.PART_HEAD:
@@ -106,11 +97,11 @@ public class RobotRandomiser : MonoBehaviour
                             {
                                 //Get "Torso" child and set transform position to that
                                 child.transform.position = goal.transform.GetChild(1).position;
-                                if (!child.played_audio)
-                                {
-                                    child.GetComponent<AudioSource>().Play();
-                                    child.played_audio = true;
-                                }
+                                    if (!child.played_audio)
+                                    {
+                                        child.GetComponent<AudioSource>().Play();
+                                        child.played_audio = true;
+                                    }
                                 }
 
                             break;
@@ -134,8 +125,6 @@ public class RobotRandomiser : MonoBehaviour
                             break;
                         }
                     }
-                    //Removes any excess speed to prevent 'flying'
-                    child.GetComponent<Rigidbody>().velocity = Vector2.zero;
                 }
             }
         }
@@ -168,7 +157,8 @@ public class RobotRandomiser : MonoBehaviour
         else
         {
             Debug.Log("Key " + key + ", Value: " + value);
-            child.is_fading = true;
+            //FindObjectOfType<RobotGameManager>().ChangeScore(-5);
+            //child.is_fading = true;
         }
     }
 
@@ -199,5 +189,16 @@ public class RobotRandomiser : MonoBehaviour
         part_success.Add("Legs", false);
 
         FindObjectOfType<RobotGameUI>().UpdateUI();
+    }
+
+    public bool GetSuccess(string key)
+    {
+        return part_success[key];
+    }
+
+    public string GetColour(string key)
+    {
+        Debug.Log(parts[key]);
+        return parts[key];
     }
 }

@@ -26,10 +26,10 @@ public class DragScript : MonoBehaviour
     {
         touch_pos = new_pos;
         touch_pos = Camera.main.ScreenToWorldPoint(touch_pos);
-            transform.localPosition = new Vector2(touch_pos.x - clickdown_pos.x, touch_pos.y - clickdown_pos.y);
-            clickdown_pos.x = touch_pos.x - transform.localPosition.x;
-            clickdown_pos.y = touch_pos.y - transform.localPosition.y;
-            grabbed = true;        
+        transform.localPosition = new Vector2(touch_pos.x - clickdown_pos.x, touch_pos.y - clickdown_pos.y);
+        clickdown_pos.x = touch_pos.x - transform.localPosition.x;
+        clickdown_pos.y = touch_pos.y - transform.localPosition.y;
+        grabbed = true;        
     }
 
     private void OnTouchUp()

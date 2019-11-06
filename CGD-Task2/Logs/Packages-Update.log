@@ -17,6 +17,9 @@ The following packages were updated:
   com.unity.textmeshpro from version 2.0.0 to 2.0.1
   com.unity.timeline from version 0.0.0-builtin to 1.1.0
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> RobotBuilder
 
 === Wed Oct 30 10:09:20 2019
 
@@ -25,6 +28,7 @@ Update Mode: updateDependencies
 
 The following packages were updated:
   com.unity.ide.rider from version 1.0.8 to 1.1.0
+<<<<<<< HEAD
 =======
 
 === Wed Oct 30 10:09:20 2019
@@ -35,3 +39,5 @@ Update Mode: updateDependencies
 The following packages were updated:
   com.unity.ide.rider from version 1.0.8 to 1.1.0
 >>>>>>> EndScreen
+=======
+>>>>>>> RobotBuilder

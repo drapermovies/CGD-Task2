@@ -219,6 +219,7 @@ public class DroneMovement : MonoBehaviour
         {
             if (other.tag == "Obstacle" && !invincible)
             {
+                gameObject.GetComponent<AudioSource>().Play();
                 Instantiate(explosion, gameObject.transform.position, gameObject.transform.rotation);
                 gameObject.GetComponent<SpriteRenderer>().color = Color.red;
                 Destroy(other.gameObject);

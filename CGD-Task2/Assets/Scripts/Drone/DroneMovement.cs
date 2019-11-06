@@ -87,14 +87,18 @@ public class DroneMovement : MonoBehaviour
                 rotateAndMove();
             }
             
-            score += 10.0f * Time.deltaTime;
+            score += 7.5f * Time.deltaTime;
         }
         if(score < 0.0f)
         {
             score = 0.0f;
         }
         score_text.text = "Score: " + Mathf.FloorToInt(score);
-
+        if(score < 700)
+        {
+            FindObjectOfType<DroneSpawner>().new_max_timer = 1.4f - (Mathf.FloorToInt(score / 150) * 0.125f);
+            FindObjectOfType<Obstacles>().max_speed = 3.6f + (Mathf.FloorToInt(score / 150) * 0.275f);
+        }
         if (invincible)
         {
             updateInvincibility();
@@ -231,7 +235,7 @@ public class DroneMovement : MonoBehaviour
                 }
                 if(!StressManager.GetBurnout() && !StressManager.GetResting())
                 {
-                    StressManager.IncreaseStressLevel(1.0f);
+                    StressManager.IncreaseStressLevel(FindObjectOfType<StressTimerScript>().maxStress/4);
                 }
             }
             else if (other.tag == "Pickup")
@@ -244,6 +248,10 @@ public class DroneMovement : MonoBehaviour
                 score += 20;
                 Instantiate(score_effect, gameObject.transform.position, gameObject.transform.rotation).GetComponent<TextMesh>().text = "+20";
                 GetComponent<Spawner>().SpawnBodyPart();
+                if (!StressManager.GetBurnout() && !StressManager.GetResting())
+                {
+                    StressManager.DecreaseStressLevel(FindObjectOfType<StressTimerScript>().maxStress / 5);
+                }
             }
         }
     }

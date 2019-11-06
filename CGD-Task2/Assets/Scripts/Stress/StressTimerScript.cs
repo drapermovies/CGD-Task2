@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class StressTimerScript : MonoBehaviour
 {
-
     public float maxStress;
 
     public float restRecoverySpeed;

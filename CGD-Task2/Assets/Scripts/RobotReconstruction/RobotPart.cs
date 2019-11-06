@@ -159,36 +159,7 @@ public class RobotPart : MonoBehaviour
             //return;
         }
 
-        Vector2 temp_mouse = Vector2.zero;
-        temp_mouse.x = touch_pos.x - transform.position.x;
-        temp_mouse.y = touch_pos.y - transform.position.y;
-        mouse_offset = temp_mouse;
-
-        touch_pos = pos;
-
         this.transform.parent = null; //Removes the spawner as a parent
-    }
-
-    /*
-     * Called when the mouse is dragged
-     */
-    private void OnTouchMove(Vector2 pos)
-    {
-        if(StressManager.GetBurnout())
-        {
-            //return;
-        }
-        Transform obj = FindObjectOfType<RobotGoal>().transform;
-        Vector2 new_position = Vector2.zero;
-
-        touch_pos = pos;
-
-        transform.position = GetTouchWorldPos();
-
-        if(transform.parent)
-        {
-            transform.parent = null;
-        }
     }
 
     void OnTouchUp(Vector2 pos)

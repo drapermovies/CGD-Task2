@@ -1,22 +1,43 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-<<<<<<< HEAD
-    - RobotPart
-=======
+    - AcctivateResting
+    - BugInitBehaviour
+    - BugMovement
+    - BugSpawner
+    - BurnedFadeInAndOut
+    - CheckScene
+    - DisplayScore
+    - DragScript
+    - DroneController
+    - DroneHealth
+    - DroneMovement
+    - DroneSpawner
+    - EndGame
+    - Obstacles
     - RobotGameManager
     - RobotGameUI
     - RobotGoal
     - RobotPart
     - RobotRandomiser
->>>>>>> RobotBuilder
+    - SerenityFadeInAndOut
     - Spawner
+    - StartGameScript
+    - StressTimerScript
+    - TouchManager
+    - explosionTimer
+    - scoreEffect
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.TileDragAndDropManager
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -28,7 +49,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Image
     - UnityEngine.UI.Text
   sceneClasses:
-    Assets/Scenes/RobotBuilder.unity:
+    Assets/Scenes/EndScreen.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -41,17 +62,7 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
-<<<<<<< HEAD
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 9658}
-=======
-    - Class: 49
-      Script: {instanceID: 0}
-    - Class: 61
+    - Class: 65
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
@@ -62,40 +73,21 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9656}
+      Script: {instanceID: 9682}
     - Class: 114
-      Script: {instanceID: 9660}
->>>>>>> RobotBuilder
+      Script: {instanceID: 9848}
     - Class: 114
-      Script: {instanceID: 9822}
+      Script: {instanceID: 10300}
     - Class: 114
-      Script: {instanceID: 9862}
+      Script: {instanceID: 10476}
     - Class: 114
-      Script: {instanceID: 10260}
+      Script: {instanceID: 10568}
     - Class: 114
-<<<<<<< HEAD
-      Script: {instanceID: 11144}
+      Script: {instanceID: 11172}
     - Class: 114
-      Script: {instanceID: 11514}
+      Script: {instanceID: 11526}
     - Class: 114
-      Script: {instanceID: 12862}
-    - Class: 114
-      Script: {instanceID: 12966}
-=======
-      Script: {instanceID: 10270}
-    - Class: 114
-      Script: {instanceID: 10370}
-    - Class: 114
-      Script: {instanceID: 10808}
-    - Class: 114
-      Script: {instanceID: 11056}
-    - Class: 114
-      Script: {instanceID: 11108}
-    - Class: 114
-      Script: {instanceID: 11286}
-    - Class: 114
-      Script: {instanceID: 11480}
->>>>>>> RobotBuilder
+      Script: {instanceID: 11558}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -112,18 +104,183 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
+    Assets/Scenes/Game.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 61
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 102
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 9678}
+    - Class: 114
+      Script: {instanceID: 9682}
+    - Class: 114
+      Script: {instanceID: 9848}
+    - Class: 114
+      Script: {instanceID: 9856}
+    - Class: 114
+      Script: {instanceID: 9890}
+    - Class: 114
+      Script: {instanceID: 10074}
+    - Class: 114
+      Script: {instanceID: 10100}
+    - Class: 114
+      Script: {instanceID: 10126}
+    - Class: 114
+      Script: {instanceID: 10300}
+    - Class: 114
+      Script: {instanceID: 10310}
+    - Class: 114
+      Script: {instanceID: 10352}
+    - Class: 114
+      Script: {instanceID: 10414}
+    - Class: 114
+      Script: {instanceID: 10428}
+    - Class: 114
+      Script: {instanceID: 10454}
+    - Class: 114
+      Script: {instanceID: 10524}
+    - Class: 114
+      Script: {instanceID: 10586}
+    - Class: 114
+      Script: {instanceID: 10670}
+    - Class: 114
+      Script: {instanceID: 10712}
+    - Class: 114
+      Script: {instanceID: 10796}
+    - Class: 114
+      Script: {instanceID: 10868}
+    - Class: 114
+      Script: {instanceID: 11032}
+    - Class: 114
+      Script: {instanceID: 11118}
+    - Class: 114
+      Script: {instanceID: 11172}
+    - Class: 114
+      Script: {instanceID: 11212}
+    - Class: 114
+      Script: {instanceID: 11270}
+    - Class: 114
+      Script: {instanceID: 11286}
+    - Class: 114
+      Script: {instanceID: 11360}
+    - Class: 114
+      Script: {instanceID: 11526}
+    - Class: 114
+      Script: {instanceID: 11558}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 252
+      Script: {instanceID: 0}
+    Assets/Scenes/MainMenu.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 109
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 10322}
+    - Class: 114
+      Script: {instanceID: 10568}
+    - Class: 114
+      Script: {instanceID: 10916}
+    - Class: 114
+      Script: {instanceID: 10930}
+    - Class: 114
+      Script: {instanceID: 11348}
+    - Class: 114
+      Script: {instanceID: 11526}
+    - Class: 114
+      Script: {instanceID: 11536}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
   scriptHashData:
   - hash:
       serializedVersion: 2
-<<<<<<< HEAD
-=======
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RobotRandomiser
   - hash:
       serializedVersion: 2
->>>>>>> RobotBuilder
       Hash: 4bc4346a71a8df53a6b106f68ef3a190
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -176,6 +333,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Scrollbar
+  - hash:
+      serializedVersion: 2
+      Hash: 441e6668eb1ff5a72d27920a06b965ad
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DragScript
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -238,10 +401,22 @@ ScriptsOnlyBuild:
     className: PhysicsRaycaster
   - hash:
       serializedVersion: 2
+      Hash: b936099c8245ba232637d8b44b37d820
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ConveyorBelt
+  - hash:
+      serializedVersion: 2
       Hash: bd3cf68c8964d3c66d1c43f4f98508c9
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: AnimationTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AcctivateResting
   - hash:
       serializedVersion: 2
       Hash: cf9f5cf2c3145a37ac07f00e50e460f9
@@ -256,10 +431,22 @@ ScriptsOnlyBuild:
     className: RectMask2D
   - hash:
       serializedVersion: 2
+      Hash: 8526ef7c6f925ac34c12760f12cbda78
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EndGame
+  - hash:
+      serializedVersion: 2
       Hash: 00274a21279f5cb831ce20f895049e38
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SubMeshUI
+  - hash:
+      serializedVersion: 2
+      Hash: 6ebdad4f93d8858c116c5cb14a6704ab
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Obstacles
   - hash:
       serializedVersion: 2
       Hash: 5ab533713adae59372fb3e10a585c186
@@ -292,15 +479,12 @@ ScriptsOnlyBuild:
     className: ControlPlayableAsset
   - hash:
       serializedVersion: 2
-<<<<<<< HEAD
-=======
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RobotGameManager
   - hash:
       serializedVersion: 2
->>>>>>> RobotBuilder
       Hash: b8a5e8091ab0b8861d2add371082c5e0
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -319,19 +503,40 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-<<<<<<< HEAD
-=======
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BurnedFadeInAndOut
+  - hash:
+      serializedVersion: 2
       Hash: 283eda46d5f548a9029f8c9c5929bcad
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Spawner
   - hash:
       serializedVersion: 2
->>>>>>> RobotBuilder
+      Hash: 64a68ab627f5961dd6d876f76940f860
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BugMovement
+  - hash:
+      serializedVersion: 2
+      Hash: 18c899e7391e13324e5fc7f591829809
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BugSpawner
+  - hash:
+      serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_Asset
+  - hash:
+      serializedVersion: 2
+      Hash: 99a1832db959e12c7261fa5cc0ef34db
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DisplayScore
   - hash:
       serializedVersion: 2
       Hash: 97ace6213ad0f149b0917a4c669c6ca3
@@ -346,10 +551,28 @@ ScriptsOnlyBuild:
     className: SignalTrack
   - hash:
       serializedVersion: 2
+      Hash: ba22bb746a709aeaed06bd420762b9ba
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: StressTimerScript
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SpriteAnimator
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: StartGameScript
+  - hash:
+      serializedVersion: 2
+      Hash: befc8112508bfffa5c8e75834ef8fd6f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DroneSpawner
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -364,6 +587,12 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
+      Hash: 49e57c7b7793b5c239450cad99a15d1a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DroneMovement
+  - hash:
+      serializedVersion: 2
       Hash: 516824a435828eadd660ef2f1658a48e
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -376,128 +605,28 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-<<<<<<< HEAD
-      Hash: a01528258fe67fa484658e5b5d14c189
-    assemblyName: Facebook.Unity.Settings.dll
-    namespaceName: Facebook.Unity.Settings
-    className: FacebookSettings
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: explosionTimer
   - hash:
       serializedVersion: 2
-=======
->>>>>>> RobotBuilder
       Hash: 5ad4aa237d47ac2bab17bacb672edf7a
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
-<<<<<<< HEAD
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Facebook.Unity.dll
-    namespaceName: Facebook.Unity.Mobile.Android
-    className: AndroidFacebookGameObject
+      Hash: 48bd5d79b8a27103b5875e51438b1a92
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DroneController
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Facebook.Unity.dll
-    namespaceName: Facebook.Unity.Mobile.Android
-    className: AndroidFacebookLoader
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Facebook.Unity.dll
-    namespaceName: Facebook.Unity.Arcade
-    className: ArcadeFacebookGameObject
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Facebook.Unity.dll
-    namespaceName: Facebook.Unity.Arcade
-    className: ArcadeFacebookLoader
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Facebook.Unity.dll
-    namespaceName: Facebook.Unity
-    className: AsyncRequestString
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Facebook.Unity.dll
-    namespaceName: Facebook.Unity.Canvas
-    className: CanvasFacebookGameObject
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Facebook.Unity.dll
-    namespaceName: Facebook.Unity.Canvas
-    className: CanvasFacebookLoader
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Facebook.Unity.dll
-    namespaceName: Facebook.Unity.Editor
-    className: EditorFacebookGameObject
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Facebook.Unity.dll
-    namespaceName: Facebook.Unity.Editor
-    className: EditorFacebookLoader
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Facebook.Unity.dll
-    namespaceName: Facebook.Unity.Editor.Dialogs
-    className: EmptyMockDialog
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Facebook.Unity.dll
-    namespaceName: Facebook.Unity
-    className: FacebookScheduler
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Facebook.Unity.dll
-    namespaceName: Facebook.Unity
-    className: FB
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Facebook.Unity.dll
-    namespaceName: Facebook.Unity.Mobile.IOS
-    className: IOSFacebookGameObject
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Facebook.Unity.dll
-    namespaceName: Facebook.Unity.Mobile.IOS
-    className: IOSFacebookLoader
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Facebook.Unity.dll
-    namespaceName: Facebook.Unity.Canvas
-    className: JsBridge
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Facebook.Unity.dll
-    namespaceName: Facebook.Unity.Editor.Dialogs
-    className: MockLoginDialog
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Facebook.Unity.dll
-    namespaceName: Facebook.Unity.Editor.Dialogs
-    className: MockShareDialog
-=======
-      Hash: c6e79b39619d49d4d6c046df89ca3b47
+      Hash: b817bc4b0fe1c20355352d1c4fd804f0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RobotPart
->>>>>>> RobotBuilder
   - hash:
       serializedVersion: 2
       Hash: 12e64d607873da15ad3f833620350d51
@@ -548,21 +677,30 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
+      Hash: d68c786af2cc632dcd21eee460ddca34
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DroneHealth
+  - hash:
+      serializedVersion: 2
       Hash: ee0cef6caaac8ae485bfa82f000f0f7b
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-<<<<<<< HEAD
-=======
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RobotGameUI
   - hash:
       serializedVersion: 2
->>>>>>> RobotBuilder
+      Hash: ae4092761276e88f30be5f00daa06c63
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MultipleTouch
+  - hash:
+      serializedVersion: 2
       Hash: f336e086360abe49a3323e5f1583c35a
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -581,6 +719,30 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Swipe
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: scoreEffect
+  - hash:
+      serializedVersion: 2
+      Hash: 91cd17e66675302f4b87c291758b6769
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BugInitBehaviour
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SerenityFadeInAndOut
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -593,15 +755,12 @@ ScriptsOnlyBuild:
     className: TMP_StyleSheet
   - hash:
       serializedVersion: 2
-<<<<<<< HEAD
-=======
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RobotGoal
   - hash:
       serializedVersion: 2
->>>>>>> RobotBuilder
       Hash: 5372ed2ce39229b1ac910757999a8be2
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -642,6 +801,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SubMesh
+  - hash:
+      serializedVersion: 2
+      Hash: 70852d662f6288c9c566950295a8f999
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TouchManager
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CheckScene
   - hash:
       serializedVersion: 2
       Hash: 7090bc1e5ccaec2a9d0d1335ed8cee99
@@ -690,26 +861,9 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-<<<<<<< HEAD
-  - hash:
-      serializedVersion: 2
-      Hash: c6e79b39619d49d4d6c046df89ca3b47
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: RobotPart
-  - hash:
-      serializedVersion: 2
-      Hash: 283eda46d5f548a9029f8c9c5929bcad
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Spawner
   platform: 5
   scenePathNames:
-  - Assets/Scenes/RobotBuilder.unity
-  playerPath: D:/CGD-Task2.exe
-=======
-  platform: 5
-  scenePathNames:
-  - Assets/Scenes/RobotBuilder.unity
-  playerPath: C:/Users/Joel/Documents/Prototypes/Foundry Frenzy/Foundry Frenzy.exe
->>>>>>> RobotBuilder
+  - Assets/Scenes/MainMenu.unity
+  - Assets/Scenes/Game.unity
+  - Assets/Scenes/EndScreen.unity
+  playerPath: C:/Users/Joel/Documents/Prototypes/ff-6thNov-3am/Foundry Frenzy.exe

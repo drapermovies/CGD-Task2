@@ -6,6 +6,11 @@ public class RobotGameManager : MonoBehaviour
 {
     int score = 0;
 
+    private void Update()
+    {
+        ScoreManager.SetRobotScore(score);
+    }
+
     public void ChangeScore(int change)
     {
         score += change;

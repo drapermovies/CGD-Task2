@@ -36,7 +36,7 @@ public class Spawner : MonoBehaviour
     /*
      * Spawns a body part
      */
-    bool SpawnBodyPart()
+    public bool SpawnBodyPart()
     {
         Transform obj = Instantiate(body_part).transform;
         objects.Add(obj);

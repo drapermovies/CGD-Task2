@@ -5,12 +5,14 @@ using UnityEngine.SceneManagement;
 
 public static class Loader
 {
+    private static bool Gamefin = false;
+
     public enum SceneID
     {
         //Names of all the scenes used for the final build
         MainMenu,
-        SampleScene,
-        StressTester,
+        Game,
+        EndScreen,
         DroneRunner
     }
 
@@ -22,6 +24,16 @@ public static class Loader
     public static Scene GetCurrentScene()
     {
         return SceneManager.GetActiveScene();
+    }
+
+    public static bool GetGameFin()
+    {
+        return Gamefin;
+    }
+
+    public static void SetGameFin(bool nuwGameFin)
+    {
+        Gamefin = nuwGameFin;
     }
 }
 

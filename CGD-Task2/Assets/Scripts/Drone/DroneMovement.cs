@@ -88,6 +88,8 @@ public class DroneMovement : MonoBehaviour
             }
             
             score += 7.5f * Time.deltaTime;
+            int scoreBOI = Mathf.FloorToInt(score);
+            ScoreManager.SetDroneScore(scoreBOI);
         }
         if(score < 0.0f)
         {

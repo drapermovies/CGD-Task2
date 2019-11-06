@@ -1,0 +1,25 @@
+<<<<<<< HEAD:CGD-Task2/Assets/Scripts/Drone/Doesn't work/MultipleTouch.cs.meta
+fileFormatVersion: 2
+guid: 3422332caf98c734a859993e964351d9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+=======
+fileFormatVersion: 2
+guid: 43b72437d9bb4d842b70e9251032ac80
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>> SceneManeger:CGD-Task2/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/UnityUtils.cs.meta

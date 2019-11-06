@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3014097354314884791}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3014097354314884790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.69, z: 0}
+  m_LocalPosition: {x: -0.78, y: 4.18, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 3014097354568129646}
@@ -41,8 +41,8 @@ GameObject:
   - component: {fileID: 3014097354568129646}
   - component: {fileID: 3014097354568129641}
   - component: {fileID: 3014097354568129647}
-  - component: {fileID: 3014097354568129644}
-  m_Layer: 0
+  - component: {fileID: 3595762277822206326}
+  m_Layer: 8
   m_Name: RobotGoalZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 3014097354568129640}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.293, y: 1.706, z: -0.43683618}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 0.48499998, y: 0.5362, z: 1}
   m_Children:
   - {fileID: 3014097354314884791}
   - {fileID: 3014097355713184398}
@@ -127,32 +127,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 539c2cbd52e704b4fa82bbd9161c80cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &3014097354568129644
-BoxCollider2D:
+--- !u!65 &3595762277822206326
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3014097354568129640}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.5, y: 15}
-    newSize: {x: 10.5, y: 15}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 15, y: 20}
-  m_EdgeRadius: 0
+  m_Size: {x: 10.5, y: 15, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3014097355713184393
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3014097355713184398}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Torso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3014097356171454873}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Legs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3014097356171454872}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.06, z: 0}
+  m_LocalPosition: {x: 0, y: -2.94, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 3014097354568129646}

@@ -36,7 +36,15 @@ public class RobotGameUI : MonoBehaviour
 
     private void Update()
     {
-        score_text.text = FindObjectOfType<RobotGameManager>().ScoreToDisplay();
+        RobotGameManager rgm = FindObjectOfType<RobotGameManager>();
+        if (rgm != null)
+        {
+            score_text.text = rgm.ScoreToDisplay();
+        }
+        else
+        {
+            score_text.text = "";
+        }
     }
 
     public void UpdateUI()

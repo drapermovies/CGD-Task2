@@ -1,11 +1,15 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+<<<<<<< HEAD
+    - RobotPart
+=======
     - RobotGameManager
     - RobotGameUI
     - RobotGoal
     - RobotPart
     - RobotRandomiser
+>>>>>>> RobotBuilder
     - Spawner
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
@@ -37,6 +41,14 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+<<<<<<< HEAD
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 9658}
+=======
     - Class: 49
       Script: {instanceID: 0}
     - Class: 61
@@ -53,6 +65,7 @@ ScriptsOnlyBuild:
       Script: {instanceID: 9656}
     - Class: 114
       Script: {instanceID: 9660}
+>>>>>>> RobotBuilder
     - Class: 114
       Script: {instanceID: 9822}
     - Class: 114
@@ -60,6 +73,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10260}
     - Class: 114
+<<<<<<< HEAD
+      Script: {instanceID: 11144}
+    - Class: 114
+      Script: {instanceID: 11514}
+    - Class: 114
+      Script: {instanceID: 12862}
+    - Class: 114
+      Script: {instanceID: 12966}
+=======
       Script: {instanceID: 10270}
     - Class: 114
       Script: {instanceID: 10370}
@@ -73,6 +95,7 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11286}
     - Class: 114
       Script: {instanceID: 11480}
+>>>>>>> RobotBuilder
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -92,12 +115,15 @@ ScriptsOnlyBuild:
   scriptHashData:
   - hash:
       serializedVersion: 2
+<<<<<<< HEAD
+=======
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RobotRandomiser
   - hash:
       serializedVersion: 2
+>>>>>>> RobotBuilder
       Hash: 4bc4346a71a8df53a6b106f68ef3a190
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -266,12 +292,15 @@ ScriptsOnlyBuild:
     className: ControlPlayableAsset
   - hash:
       serializedVersion: 2
+<<<<<<< HEAD
+=======
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RobotGameManager
   - hash:
       serializedVersion: 2
+>>>>>>> RobotBuilder
       Hash: b8a5e8091ab0b8861d2add371082c5e0
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -290,12 +319,15 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
+<<<<<<< HEAD
+=======
       Hash: 283eda46d5f548a9029f8c9c5929bcad
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Spawner
   - hash:
       serializedVersion: 2
+>>>>>>> RobotBuilder
       Hash: b3ab2106268377ffe25dd18ac23dca28
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -344,16 +376,128 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
+<<<<<<< HEAD
+      Hash: a01528258fe67fa484658e5b5d14c189
+    assemblyName: Facebook.Unity.Settings.dll
+    namespaceName: Facebook.Unity.Settings
+    className: FacebookSettings
+  - hash:
+      serializedVersion: 2
+=======
+>>>>>>> RobotBuilder
       Hash: 5ad4aa237d47ac2bab17bacb672edf7a
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
+<<<<<<< HEAD
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Facebook.Unity.dll
+    namespaceName: Facebook.Unity.Mobile.Android
+    className: AndroidFacebookGameObject
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Facebook.Unity.dll
+    namespaceName: Facebook.Unity.Mobile.Android
+    className: AndroidFacebookLoader
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Facebook.Unity.dll
+    namespaceName: Facebook.Unity.Arcade
+    className: ArcadeFacebookGameObject
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Facebook.Unity.dll
+    namespaceName: Facebook.Unity.Arcade
+    className: ArcadeFacebookLoader
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Facebook.Unity.dll
+    namespaceName: Facebook.Unity
+    className: AsyncRequestString
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Facebook.Unity.dll
+    namespaceName: Facebook.Unity.Canvas
+    className: CanvasFacebookGameObject
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Facebook.Unity.dll
+    namespaceName: Facebook.Unity.Canvas
+    className: CanvasFacebookLoader
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Facebook.Unity.dll
+    namespaceName: Facebook.Unity.Editor
+    className: EditorFacebookGameObject
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Facebook.Unity.dll
+    namespaceName: Facebook.Unity.Editor
+    className: EditorFacebookLoader
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Facebook.Unity.dll
+    namespaceName: Facebook.Unity.Editor.Dialogs
+    className: EmptyMockDialog
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Facebook.Unity.dll
+    namespaceName: Facebook.Unity
+    className: FacebookScheduler
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Facebook.Unity.dll
+    namespaceName: Facebook.Unity
+    className: FB
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Facebook.Unity.dll
+    namespaceName: Facebook.Unity.Mobile.IOS
+    className: IOSFacebookGameObject
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Facebook.Unity.dll
+    namespaceName: Facebook.Unity.Mobile.IOS
+    className: IOSFacebookLoader
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Facebook.Unity.dll
+    namespaceName: Facebook.Unity.Canvas
+    className: JsBridge
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Facebook.Unity.dll
+    namespaceName: Facebook.Unity.Editor.Dialogs
+    className: MockLoginDialog
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Facebook.Unity.dll
+    namespaceName: Facebook.Unity.Editor.Dialogs
+    className: MockShareDialog
+=======
       Hash: c6e79b39619d49d4d6c046df89ca3b47
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RobotPart
+>>>>>>> RobotBuilder
   - hash:
       serializedVersion: 2
       Hash: 12e64d607873da15ad3f833620350d51
@@ -410,12 +554,15 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
+<<<<<<< HEAD
+=======
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RobotGameUI
   - hash:
       serializedVersion: 2
+>>>>>>> RobotBuilder
       Hash: f336e086360abe49a3323e5f1583c35a
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -446,12 +593,15 @@ ScriptsOnlyBuild:
     className: TMP_StyleSheet
   - hash:
       serializedVersion: 2
+<<<<<<< HEAD
+=======
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RobotGoal
   - hash:
       serializedVersion: 2
+>>>>>>> RobotBuilder
       Hash: 5372ed2ce39229b1ac910757999a8be2
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -540,7 +690,26 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+<<<<<<< HEAD
+  - hash:
+      serializedVersion: 2
+      Hash: c6e79b39619d49d4d6c046df89ca3b47
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RobotPart
+  - hash:
+      serializedVersion: 2
+      Hash: 283eda46d5f548a9029f8c9c5929bcad
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Spawner
+  platform: 5
+  scenePathNames:
+  - Assets/Scenes/RobotBuilder.unity
+  playerPath: D:/CGD-Task2.exe
+=======
   platform: 5
   scenePathNames:
   - Assets/Scenes/RobotBuilder.unity
   playerPath: C:/Users/Joel/Documents/Prototypes/Foundry Frenzy/Foundry Frenzy.exe
+>>>>>>> RobotBuilder

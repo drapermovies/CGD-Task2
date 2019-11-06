@@ -78,10 +78,10 @@ public class BugMovement : MonoBehaviour
                 dangering = false;
             }
             rerollDecidedArea();
-            distance = decidedArea - transform.position;
-            angle = Vector2.Angle(Vector2.up, distance);
-            transform.eulerAngles = new Vector3(0, 0, angle);
-
+            Vector3 dir = decidedArea - transform.position;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            GetComponent<AudioSource>().Play();
             // generate new cooldown until next rng shift
             cooldownUntilRNG = Random.Range(minCooldownRNG, maxCoolDownRNG);
         }

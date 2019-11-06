@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AcctivateResting : MonoBehaviour
 {
-    private void OnMouseUp()
+    private void OnTouchUp()
     {
         if(!StressManager.GetBurnout())
         {

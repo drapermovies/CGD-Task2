@@ -10,11 +10,6 @@ public static class StressManager
     static bool Resting = false;
 
     //get & Set StressLevel
-    public static void SetStressLevel(float newStressLevel)
-    {
-        StressLevel = newStressLevel;
-    }
-
     public static void IncreaseStressLevel(float increaseValue)
     {
         StressLevel += increaseValue;
@@ -23,6 +18,10 @@ public static class StressManager
     public static void DecreaseStressLevel(float decreaseValue)
     {
         StressLevel -= decreaseValue;
+        if(StressLevel <0.0f)
+        {
+            StressLevel = 0.0f;
+        }
     }
 
     public static float GetStressLevel()

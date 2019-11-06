@@ -4,30 +4,20 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public bool was_dragged { get; set; }
+
     [SerializeField] private GameObject body_part = null;
-    [SerializeField] private float conveyor_speed = 3.0f; //Time object moves across the screen
     [SerializeField] private float spawn_rate = 0.85f; //Time in seconds between parts spawning
 
     private float timer = 0.0f;
 
     private List<Transform> objects = new List<Transform>();
-
-    private Vector3 conveyor_dir = new Vector3(1.0f, 0.0f, 0.0f);
-
-    /*
-     * Called every frame
-     */
+    
+    //Called every frame
+     
     private void Update()
     {
-        timer += Time.deltaTime;
-
-        foreach (Transform form in objects)
-        {
-            if (form.parent != null)
-            {
-                form.GetComponent<RobotPart>().ConveyorMovement(conveyor_speed, conveyor_dir);
-            }
-        }
+         timer += Time.deltaTime;
 
         if (timer >= spawn_rate)
         {
@@ -42,10 +32,11 @@ public class Spawner : MonoBehaviour
         }
     }
 
+
     /*
      * Spawns a body part
      */
-    bool SpawnBodyPart()
+    public bool SpawnBodyPart()
     {
         Transform obj = Instantiate(body_part).transform;
         objects.Add(obj);
@@ -69,5 +60,15 @@ public class Spawner : MonoBehaviour
                 break;
             }
         }
+    }
+
+    private void OnMouseEnter()
+    {
+        was_dragged = false;
+    }
+
+    private void OnMouseExit()
+    {
+        was_dragged = true;
     }
 }
